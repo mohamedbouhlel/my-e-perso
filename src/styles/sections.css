@@ -1,0 +1,74 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 44rem;
+}
+
+.section__eyebrow {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.section__title {
+  margin: 0;
+  font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.section__title--hero {
+  /* Échelle reprise du hero du squelette : clamp(2.5rem, 7vw, 5rem), 720px, interligne 1.02. */
+  max-width: 45rem;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.section__lead {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+.placeholder__label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.placeholder__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.placeholder__row {
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--row);
+}
+
+.placeholder__row--medium {
+  width: 68%;
+}
+
+.placeholder__row--short {
+  width: 42%;
+}

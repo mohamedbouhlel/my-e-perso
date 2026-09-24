@@ -1,13 +1,49 @@
 :root {
+  /* Reprend l'identité du squelette : fond sombre, texte clair, Inter. */
+  --bg: #111;
+  --surface: #191919;
+  --surface-raised: #1f1f1f;
+  --row: #2f2f2f;
+  --fg: #f4f4f4;
+  --muted: #a3a3a3;
+  --line: #2b2b2b;
+  --radius: 10px;
+  --shell-max: 1040px;
+
+  color-scheme: dark;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-  color: #f4f4f4;
-  background: #111;
+  color: var(--fg);
+  background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
-* { box-sizing: border-box; }
-body { margin: 0; min-width: 320px; min-height: 100vh; }
-.site-shell { max-width: 900px; margin: 12vh auto; padding: 2rem; }
-.eyebrow { color: #aaa; font-size: .75rem; letter-spacing: .18em; }
-h1 { max-width: 720px; font-size: clamp(2.5rem, 7vw, 5rem); line-height: 1.02; }
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* Les attributs hidden doivent gagner contre les display des composants. */
+[hidden] {
+  display: none !important;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
