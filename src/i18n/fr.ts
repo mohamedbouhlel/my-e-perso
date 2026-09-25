@@ -6,7 +6,7 @@
 const fr = {
   meta: {
     title: 'Operius',
-    description: 'Site personnel — projets, compétences et contact.',
+    description: 'Operius — projets, compétences et contact.',
   },
 
   a11y: {

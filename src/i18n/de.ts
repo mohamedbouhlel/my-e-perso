@@ -4,7 +4,7 @@ import type { Translations } from './fr';
 const de: Translations = {
   meta: {
     title: 'Operius',
-    description: 'Persönliche Website — Projekte, Kompetenzen und Kontakt.',
+    description: 'Operius — Projekte, Kompetenzen und Kontakt.',
   },
 
   a11y: {

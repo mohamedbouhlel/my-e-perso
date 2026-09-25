@@ -1126,8 +1126,10 @@
   font-style: italic;
 }
 
+/* Marque provisoire : contenu non définitif, seule la lisibilité est corrigée.
+   `--muted-soft` (#7d8b9d) ne donne que 3.47:1 sur blanc ; `--muted` atteint le seuil AA. */
 .pending-inline {
-  color: var(--muted-soft);
+  color: var(--muted);
   font-size: 0.8rem;
   font-weight: 400;
 }
