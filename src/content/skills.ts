@@ -43,14 +43,14 @@ export type MasteryKey =
   | 'basesDonnees'
   | 'ia';
 
-export const masteryRows: { key: MasteryKey; domain: SkillDomain }[] = [
-  { key: 'reseaux', domain: 'reseaux' },
-  { key: 'linux', domain: 'informatique' },
-  { key: 'domotique', domain: 'domotique' },
-  { key: 'securite', domain: 'reseaux' },
-  { key: 'developpement', domain: 'developpement' },
-  { key: 'basesDonnees', domain: 'informatique' },
-  { key: 'ia', domain: 'outils' },
+export const masteryRows: { key: MasteryKey; domain: SkillDomain; level: number }[] = [
+  { key: 'reseaux', domain: 'reseaux', level: 95 },
+  { key: 'linux', domain: 'informatique', level: 90 },
+  { key: 'domotique', domain: 'domotique', level: 85 },
+  { key: 'securite', domain: 'reseaux', level: 80 },
+  { key: 'developpement', domain: 'developpement', level: 75 },
+  { key: 'basesDonnees', domain: 'informatique', level: 70 },
+  { key: 'ia', domain: 'outils', level: 65 },
 ];
 
 export type TechnologyGroupKey =

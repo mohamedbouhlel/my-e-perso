@@ -98,7 +98,10 @@ export default function SkillsSection() {
           {masteryRows.length > 0 ? (
             <>
               <Bars
-                rows={masteryRows.map((row) => ({ label: t(`skills.mastery.rows.${row.key}`) }))}
+                rows={masteryRows.map((row) => ({
+                  label: t(`skills.mastery.rows.${row.key}`),
+                  level: row.level,
+                }))}
                 pendingValue={t('common.pendingValue')}
               />
               <p className="pending-note">{t('skills.mastery.note')}</p>

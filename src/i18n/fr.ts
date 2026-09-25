@@ -5,7 +5,7 @@
  */
 const fr = {
   meta: {
-    title: 'Site personnel',
+    title: 'MonSite',
     description: 'Site personnel — projets, compétences et contact.',
   },
 
@@ -60,8 +60,7 @@ const fr = {
   },
 
   footer: {
-    tagline: 'Des outils utiles, pas des usines à gaz.',
-    note: 'Tous les textes et chiffres de cette version sont provisoires.',
+    legal: 'Solutions ouvertes pour un monde plus simple.',
     links: {
       github: 'github',
       linkedin: 'linkedin',

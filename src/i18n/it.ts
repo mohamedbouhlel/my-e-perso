@@ -3,7 +3,7 @@ import type { Translations } from './fr';
 /** Textes italiens. */
 const it: Translations = {
   meta: {
-    title: 'Sito personale',
+    title: 'MonSite',
     description: 'Sito personale — progetti, competenze e contatti.',
   },
 
@@ -57,8 +57,7 @@ const it: Translations = {
   },
 
   footer: {
-    tagline: 'Strumenti utili, non soluzioni complicate.',
-    note: 'Tutti i testi e i numeri di questa versione sono provvisori.',
+    legal: 'Soluzioni aperte per un mondo più semplice.',
     links: {
       github: 'github',
       linkedin: 'linkedin',

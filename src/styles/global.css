@@ -2,7 +2,8 @@
    Interface claire, grille discrète, accent vert, liens bleus. */
 :root {
   --bg: #ffffff;
-  --grid: #eef2f7;
+  /* Quadrillage d'arrière-plan : lignes très fines, contraste faible. */
+  --grid: #f4f7fa;
   --ink: #0c0f13;
   --ink-soft: #364152;
   --muted: #55657a;
@@ -35,7 +36,7 @@
   --shadow: 0 18px 40px rgb(15 23 42 / 8%);
 
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  --shell-max: 1200px;
+  --shell-max: 1360px;
 
   color-scheme: light;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -60,7 +61,7 @@ body {
   background-image:
     linear-gradient(to right, var(--grid) 1px, transparent 1px),
     linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
-  background-size: 46px 46px;
+  background-size: 52px 52px;
   font-size: 16px;
   line-height: 1.6;
 }

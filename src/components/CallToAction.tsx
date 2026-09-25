@@ -14,7 +14,7 @@ export default function CallToAction({ eyebrow, title, text, action, note }: Cal
   return (
     <div className="cta">
       <span className="cta__icon">
-        <Icon name="bulb" size={26} />
+        <Icon name="bulb" size={34} />
       </span>
       <div className="cta__body">
         <p className="eyebrow">{eyebrow}</p>

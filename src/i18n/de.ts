@@ -3,7 +3,7 @@ import type { Translations } from './fr';
 /** Textes allemands. */
 const de: Translations = {
   meta: {
-    title: 'Persönliche Website',
+    title: 'MonSite',
     description: 'Persönliche Website — Projekte, Kompetenzen und Kontakt.',
   },
 
@@ -58,8 +58,7 @@ const de: Translations = {
   },
 
   footer: {
-    tagline: 'Nützliche Werkzeuge, keine überladenen Lösungen.',
-    note: 'Alle Texte und Zahlen dieser Version sind vorläufig.',
+    legal: 'Offene Lösungen für eine einfachere Welt.',
     links: {
       github: 'github',
       linkedin: 'linkedin',

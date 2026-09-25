@@ -33,10 +33,13 @@ Accueil · Projets · Compétences · À propos · Contact.
 
 ## Internationalisation
 
-- Langues : **FR, EN, ES, IT, DE**. Français par défaut et repli garanti.
-- Résolution initiale : langue enregistrée → langue du navigateur (si supportée) → français.
+- Langues disponibles : **FR, EN, ES, IT, DE** (ressources dans `src/i18n/`). Français par défaut.
+- **État actuel (passe de fidélité visuelle desktop)** : le sélecteur de langue n'est pas monté dans
+  le shell et la langue est forcée au français, la référence `docs/design/home.png` n'affichant
+  aucun sélecteur. Pour revenir au comportement multi-langue complet : remonter `LanguageSwitcher`
+  dans `src/App.tsx` et rétablir la ligne de résolution commentée dans `src/i18n/index.ts`
+  (`langue enregistrée → langue du navigateur → français`).
 - Persistance : `localStorage`, clé `site-language`. L'attribut `lang` du document suit la langue active.
-- Sélecteur de langue dans l'en-tête, changement immédiat sans rechargement.
 - Source de vérité des textes : `src/i18n/fr.ts`. Les autres langues sont déclarées `Translations = typeof fr` : une clé manquante ou renommée casse la compilation.
 - Volontairement non traduits : noms de projets, technologies, noms de fichiers des panneaux techniques, nom du site et monogramme.
 

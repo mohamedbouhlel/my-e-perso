@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import BackToTop from './components/BackToTop';
 import Icon from './components/Icon';
-import LanguageSwitcher from './components/LanguageSwitcher';
 import TabNav from './components/TabNav';
 import WindowMenu from './components/WindowMenu';
 import {
@@ -83,13 +82,15 @@ export default function App() {
 
         <div className="chrome__address" aria-hidden="true">
           <span className="chrome__url">
-            <Icon name="lock" size={14} />
-            <span>{siteIdentity.address}</span>
+            <Icon name="lock" size={15} />
+            <span className="chrome__url-text">{siteIdentity.address}</span>
+            <span className="chrome__url-actions">
+              <span className="chrome__badge">
+                <Icon name="trophy" size={16} />
+              </span>
+              <span className="chrome__avatar">{siteIdentity.monogram}</span>
+            </span>
           </span>
-          <span className="chrome__badge">
-            <Icon name="trophy" size={15} />
-          </span>
-          <span className="chrome__avatar">{siteIdentity.monogram}</span>
         </div>
       </div>
 
@@ -115,7 +116,8 @@ export default function App() {
             ))}
           </nav>
 
-          <LanguageSwitcher />
+          {/* Sélecteur de langue volontairement non monté pendant la passe de fidélité desktop
+              (le composant et les traductions restent disponibles dans le projet). */}
 
           <a className="btn btn--primary site-header__cta" href="#contact">
             {t('common.contactCta')}
@@ -136,7 +138,7 @@ export default function App() {
         <footer className="site-footer">
           <span className="site-footer__name">{siteIdentity.name}</span>
           <p className="site-footer__note">
-            © {new Date().getFullYear()} — {t('footer.tagline')} {t('footer.note')}
+            © {new Date().getFullYear()} — {t('footer.legal')}
           </p>
           <nav className="site-footer__links" aria-label={t('a11y.footerNav')}>
             {footerLinkIds.map((id) => {

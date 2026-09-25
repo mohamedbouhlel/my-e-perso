@@ -10,6 +10,7 @@ import TechPanel from '../components/TechPanel';
 import {
   homeDomains,
   homeTargets,
+  profileExperienceLevels,
   profileProjectNames,
   profileTabIds,
   profileTools,
@@ -63,7 +64,7 @@ export default function HomeSection() {
         {homeDomains.map((domain) => (
           <a className="card card--domain" href="#competences" key={domain.key}>
             <span className="tile__icon">
-              <Icon name={domain.icon} size={26} />
+              <Icon name={domain.icon} size={36} />
             </span>
             <h3 className="tile__title">{t(`home.domains.${domain.key}.title`)}</h3>
             <p className="tile__text">{t(`home.domains.${domain.key}.text`)}</p>
@@ -111,7 +112,10 @@ export default function HomeSection() {
                     <span className="pending-inline">({t('home.profile.experienceNote')})</span>
                   </p>
                   <Bars
-                    rows={experienceRows.map((label) => ({ label }))}
+                    rows={experienceRows.map((label, index) => ({
+                      label,
+                      level: profileExperienceLevels[index] ?? null,
+                    }))}
                     pendingValue={t('common.pendingValue')}
                     highlightFirst
                   />

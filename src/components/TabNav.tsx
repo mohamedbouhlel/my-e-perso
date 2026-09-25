@@ -13,7 +13,6 @@ type TabNavProps = {
   }[];
   activeId: SectionId;
 };
-
 export default function TabNav({ items, activeId }: TabNavProps) {
   const { t } = useTranslation();
 
@@ -37,14 +36,13 @@ export default function TabNav({ items, activeId }: TabNavProps) {
             aria-current={isActive ? 'true' : undefined}
           >
             <span className={iconClasses}>
-              {item.monogram ? siteIdentity.monogram : <Icon name={item.icon} size={17} />}
+              {item.monogram ? siteIdentity.monogram : <Icon name={item.icon} size={19} />}
             </span>
             {item.label}
-            {isActive && (
-              <span className="tab__close" aria-hidden="true">
-                ×
-              </span>
-            )}
+            {/* Fermeture décorative : présente sur chaque onglet, comme dans la référence. */}
+            <span className="tab__close" aria-hidden="true">
+              ×
+            </span>
           </a>
         );
       })}

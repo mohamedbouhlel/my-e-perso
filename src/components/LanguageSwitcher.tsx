@@ -7,6 +7,13 @@ import {
   type Language,
 } from '../i18n';
 
+/**
+ * Sélecteur de langue du shell.
+ *
+ * Volontairement NON monté pendant la passe de fidélité visuelle desktop (la référence
+ * `docs/design/home.png` n'affiche aucun sélecteur) : voir `src/App.tsx` et `src/i18n/index.ts`.
+ * Les cinq langues restent disponibles ; remonter ce composant rétablit la sélection.
+ */
 export default function LanguageSwitcher() {
   const { t, i18n } = useTranslation();
 

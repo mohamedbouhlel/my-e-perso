@@ -6,10 +6,14 @@ import type { SectionId } from '../sections';
  * Tous les autres textes visibles viennent de `src/i18n/`.
  */
 export const siteIdentity = {
-  name: 'Site personnel',
-  monogram: 'S',
-  /** Adresse affichée dans le chrome : provisoire, le domaine réel reste à définir. */
-  address: 'site-personnel',
+  /** Nom affiché, repris de la référence validée (`docs/design/home.png`). */
+  name: 'MonSite',
+  monogram: 'M',
+  /**
+   * Adresse affichée dans le chrome. Provisoire et volontairement non routable
+   * (`.local` est réservé) : le domaine réel reste à définir.
+   */
+  address: 'monsite.local',
 };
 
 type SectionIcon = {

@@ -1,4 +1,4 @@
-# Site personnel
+# MonSite
 
 Squelette frontend React + TypeScript + Vite.
 
@@ -34,5 +34,10 @@ configuré dans ce projet.
 - `docs/` : documentation et références de design
 
 ## Langues
-Français (défaut), anglais, espagnol, italien, allemand. Le sélecteur est dans l'en-tête ; la
-langue est conservée dans `localStorage` et la section affichée n'est pas perdue au changement.
+Français (défaut), anglais, espagnol, italien, allemand — ressources dans `src/i18n/`.
+
+Passe de fidélité visuelle desktop : le sélecteur de langue n'est pas monté dans le shell et la
+langue est forcée au français (`src/i18n/index.ts`), pour rester fidèle à la référence
+`docs/design/home.png` sans qu'un visiteur puisse rester bloqué dans une autre langue. Remonter
+`LanguageSwitcher` et rétablir la ligne de résolution commentée suffit à revenir au comportement
+multi-langue complet.
