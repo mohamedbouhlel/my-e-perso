@@ -50,23 +50,10 @@ function readBrowserLanguage(): Language | null {
   return null;
 }
 
-/**
- * Résolution de la langue au démarrage.
- *
- * Ordre habituel : langue enregistrée → langue du navigateur → français.
- *
- * Passe de fidélité visuelle desktop (`docs/design/home.png`) : le sélecteur de langue n'est pas
- * monté dans le shell, la langue est donc forcée au français afin qu'aucun visiteur ne reste
- * bloqué dans une autre langue sans pouvoir en changer. Les cinq ressources restent en place :
- * restaurer la ligne commentée ci-dessous rétablit le comportement d'origine.
- */
+/** Résolution : langue enregistrée → langue navigateur → français. */
 function resolveInitialLanguage(): Language {
-  // return readStoredLanguage() ?? readBrowserLanguage() ?? DEFAULT_LANGUAGE;
-  return DEFAULT_LANGUAGE;
+  return readStoredLanguage() ?? readBrowserLanguage() ?? DEFAULT_LANGUAGE;
 }
-
-void readStoredLanguage;
-void readBrowserLanguage;
 
 const initialLanguage = resolveInitialLanguage();
 
