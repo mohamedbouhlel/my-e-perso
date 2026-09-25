@@ -247,39 +247,41 @@
   border-bottom-color: var(--green);
 }
 
-/* --- Sélecteur de langue --- */
+/* --- Sélecteur de langue compact --- */
 
 .language-switcher {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.15rem;
+  position: relative;
   flex: none;
-  padding: 0.15rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--surface-alt);
 }
 
-.language-switcher__button {
-  min-width: 2.1rem;
-  padding: 0.3rem 0.35rem;
-  border: 0;
-  border-radius: 4px;
-  background: none;
-  color: var(--muted);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+.language-switcher__select {
+  min-width: 4.4rem;
+  appearance: none;
+  padding: 0.55rem 1.8rem 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
   cursor: pointer;
 }
 
-.language-switcher__button:hover {
-  color: var(--ink);
+.language-switcher::after {
+  content: '⌄';
+  position: absolute;
+  right: 0.65rem;
+  top: 50%;
+  transform: translateY(-58%);
+  color: var(--muted);
+  pointer-events: none;
 }
 
-.language-switcher__button[aria-pressed='true'] {
-  background: var(--ink);
-  color: #fff;
+.language-switcher__select:hover,
+.language-switcher__select:focus-visible {
+  border-color: var(--green);
+  outline: none;
 }
 
 .shell__panel {
