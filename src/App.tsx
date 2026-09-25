@@ -4,6 +4,7 @@ import BackToTop from './components/BackToTop';
 import Icon from './components/Icon';
 import TabNav from './components/TabNav';
 import WindowMenu from './components/WindowMenu';
+import LanguageSwitcher from './components/LanguageSwitcher';
 import {
   footerLinkHrefs,
   footerLinkIds,
@@ -116,8 +117,7 @@ export default function App() {
             ))}
           </nav>
 
-          {/* Sélecteur de langue volontairement non monté pendant la passe de fidélité desktop
-              (le composant et les traductions restent disponibles dans le projet). */}
+          <LanguageSwitcher />
 
           <a className="btn btn--primary site-header__cta" href="#contact">
             {t('common.contactCta')}
