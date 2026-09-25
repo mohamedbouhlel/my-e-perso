@@ -3,7 +3,7 @@ import type { Translations } from './fr';
 /** Textes anglais. */
 const en: Translations = {
   meta: {
-    title: 'MonSite',
+    title: 'Operius',
     description: 'Personal site — projects, skills and contact.',
   },
 
