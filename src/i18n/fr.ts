@@ -5,7 +5,7 @@
  */
 const fr = {
   meta: {
-    title: 'MonSite',
+    title: 'Operius',
     description: 'Site personnel — projets, compétences et contact.',
   },
 
