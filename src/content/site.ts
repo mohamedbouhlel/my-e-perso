@@ -7,13 +7,13 @@ import type { SectionId } from '../sections';
  */
 export const siteIdentity = {
   /** Nom affiché, repris de la référence validée (`docs/design/home.png`). */
-  name: 'MonSite',
-  monogram: 'M',
+  name: 'Operius',
+  monogram: 'O',
   /**
    * Adresse affichée dans le chrome. Provisoire et volontairement non routable
    * (`.local` est réservé) : le domaine réel reste à définir.
    */
-  address: 'monsite.local',
+  address: 'operius.fr',
 };
 
 type SectionIcon = {
