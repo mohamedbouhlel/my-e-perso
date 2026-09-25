@@ -22,7 +22,7 @@ export default function Card({ icon, title, subtitle, children, className }: Car
             </span>
           )}
           <div>
-            <h3 className="card__title">{title}</h3>
+            <h2 className="card__title">{title}</h2>
             {subtitle && <p className="card__subtitle">{subtitle}</p>}
           </div>
         </header>

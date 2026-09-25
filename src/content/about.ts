@@ -1,24 +1,13 @@
 import type { IconName } from '../components/Icon';
 
-export type AboutMetricKey = 'experience' | 'projects' | 'passion' | 'goal';
+/** Les quatre critères de choix présentés sur la page À propos. */
+export type PrincipleKey = 'simplicity' | 'mastery' | 'proportion' | 'openness';
 
-export const aboutMetrics: { key: AboutMetricKey; icon: IconName }[] = [
-  { key: 'experience', icon: 'graduation' },
-  { key: 'projects', icon: 'users' },
-  { key: 'passion', icon: 'bulb' },
-  { key: 'goal', icon: 'target' },
+export const aboutPrinciples: { key: PrincipleKey; icon: IconName }[] = [
+  { key: 'simplicity', icon: 'check' },
+  { key: 'mastery', icon: 'gear' },
+  { key: 'proportion', icon: 'target' },
+  { key: 'openness', icon: 'globe' },
 ];
 
-export type TimelineKey = 'diploma' | 'technician' | 'integrator' | 'personal';
-
-export const aboutTimeline: { key: TimelineKey; current: boolean }[] = [
-  { key: 'diploma', current: false },
-  { key: 'technician', current: false },
-  { key: 'integrator', current: false },
-  { key: 'personal', current: true },
-];
-
-export const aboutIcons = {
-  values: 'heart' as IconName,
-  motivation: 'rocket' as IconName,
-};
+export const principlesIcon: IconName = 'heart';

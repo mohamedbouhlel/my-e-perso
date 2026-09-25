@@ -36,8 +36,5 @@ configuré dans ce projet.
 ## Langues
 Français (défaut), anglais, espagnol, italien, allemand — ressources dans `src/i18n/`.
 
-Passe de fidélité visuelle desktop : le sélecteur de langue n'est pas monté dans le shell et la
-langue est forcée au français (`src/i18n/index.ts`), pour rester fidèle à la référence
-`docs/design/home.png` sans qu'un visiteur puisse rester bloqué dans une autre langue. Remonter
-`LanguageSwitcher` et rétablir la ligne de résolution commentée suffit à revenir au comportement
-multi-langue complet.
+Le sélecteur compact de langue est monté dans le shell du site et la résolution est active
+(`src/i18n/index.ts`) : langue enregistrée → langue du navigateur → français.

@@ -15,6 +15,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const { t } = useTranslation();
   const visualLines = useTranslatedList(`projects.items.${project.key}.visualLines`);
   const lines = panelLines(visualLines, panelTonePatterns.projectCard);
+  // Les deux champs restent vides lorsque le projet n'a pas d'approche ou de remarque à afficher.
+  const approach = t(`projects.items.${project.key}.approach`);
+  const remark = t(`projects.items.${project.key}.remark`);
 
   return (
     <article className="project-card">
@@ -50,21 +53,35 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <span className="project-card__icon">
             <Icon name={project.icon} size={20} />
           </span>
-          <h3 className="project-card__name">{project.name}</h3>
+          <h2 className="project-card__name">{project.name}</h2>
           <span className={`badge badge--${project.statusTone} project-card__status`}>
             {t(`projects.items.${project.key}.status`)}
           </span>
         </div>
 
+        {/* Accroche : le problème traité, avant la description du projet. */}
+        <p className="project-card__hook">{t(`projects.items.${project.key}.hook`)}</p>
         <p className="project-card__desc">{t(`projects.items.${project.key}.description`)}</p>
 
-        <ul className="tech-tags">
-          {project.tags.map((tag) => (
-            <li className="badge badge--tag" key={tag}>
-              {tag}
-            </li>
-          ))}
-        </ul>
+        {approach && (
+          <div>
+            <p className="project-card__label">{t('projects.approachLabel')}</p>
+            <p className="project-card__desc">{approach}</p>
+          </div>
+        )}
+
+        {remark && <p className="project-card__hook">{remark}</p>}
+
+        <div>
+          <p className="project-card__label">{t('projects.technologiesLabel')}</p>
+          <ul className="tech-tags">
+            {project.tags.map((tag) => (
+              <li className="badge badge--tag" key={tag}>
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <div className="project-card__actions">
           {/* Les URL ne sont pas validées : l'emplacement existe mais reste inactif. */}

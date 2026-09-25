@@ -34,23 +34,24 @@ Accueil · Projets · Compétences · À propos · Contact.
 ## Internationalisation
 
 - Langues disponibles : **FR, EN, ES, IT, DE** (ressources dans `src/i18n/`). Français par défaut.
-- **État actuel (passe de fidélité visuelle desktop)** : le sélecteur de langue n'est pas monté dans
-  le shell et la langue est forcée au français, la référence `docs/design/home.png` n'affichant
-  aucun sélecteur. Pour revenir au comportement multi-langue complet : remonter `LanguageSwitcher`
-  dans `src/App.tsx` et rétablir la ligne de résolution commentée dans `src/i18n/index.ts`
-  (`langue enregistrée → langue du navigateur → français`).
+- Le sélecteur compact de langue est monté dans le shell (`src/App.tsx`) et la résolution est active
+  dans `src/i18n/index.ts` : langue enregistrée → langue du navigateur → français.
 - Persistance : `localStorage`, clé `site-language`. L'attribut `lang` du document suit la langue active.
-- Source de vérité des textes : `src/i18n/fr.ts`. Les autres langues sont déclarées `Translations = typeof fr` : une clé manquante ou renommée casse la compilation.
+- Source de vérité des textes : `src/i18n/fr.ts`, réécrit en **rédaction V3** (partir du problème et de
+  son contexte avant la technologie ; aucun chiffre, client ou résultat non validé). La rédaction de
+  référence est documentée dans `docs/redaction-v3.md`. Les autres langues
+  sont déclarées `Translations = typeof fr` : une clé manquante ou renommée casse la compilation, et
+  elles reprennent la structure V3.
 - Volontairement non traduits : noms de projets, technologies, noms de fichiers des panneaux techniques, nom du site et monogramme.
 
 ## Visuels
 
 - Photos découpées dans les captures de référence (`docs/design/`) et exportées dans `public/images/`
-  (8 fichiers JPEG) ; déclarées dans `src/content/visuals.ts`, affichées par `PhotoVisual`.
+  (6 fichiers JPEG) ; déclarées dans `src/content/visuals.ts`, affichées par `PhotoVisual`.
 - Les incrustations éditoriales des références (panneau de processus, citation) sont reprises en HTML
   **traduit**, positionnées aux emplacements mesurés sur les captures.
 - Les visuels de référence qui sont des maquettes d'interface/terminal (Accueil, cartes Smart BTP
-  ProGest, Versutus-IA, Outils & Scripts) restent réimplémentés en HTML/CSS avec du texte traduit.
+  ProGest, Versutus IA, Outils & automatisations) restent réimplémentés en HTML/CSS avec du texte traduit.
 - Détail complet : `docs/VERIFICATION-03.4.md`.
 
 ## Build
@@ -61,10 +62,10 @@ Accueil · Projets · Compétences · À propos · Contact.
 
 ## À finaliser
 
-- Contenus et chiffres définitifs (années d'expérience, niveaux de maîtrise, périodes, zone géographique) : valeurs provisoires dans toutes les langues.
 - Visuels : fournir les fichiers sources d'origine (les découpes viennent de captures 1024 px, donc de résolution limitée).
 - URL des projets et des dépôts, liens de pied de page, coordonnées de contact.
 - Formulaire de contact : aucun service d'envoi connecté, bouton désactivé.
-- CV : fichier non fourni, CTA désactivés.
+- CV : aucun fichier fourni ; les emplacements de téléchargement ont été retirés (la V3 ne prévoit pas de CV).
 - Traductions EN/ES/IT/DE : à faire relire par des locuteurs natifs.
-- Clés i18n non rendues depuis le remplacement des panneaux par les photos (`skills|about|contact.visualLines`) : à supprimer ou réutiliser.
+- La rédaction V3 n'affirme aucun chiffre (expérience, niveaux, périodes, zone géographique) : les blocs correspondants ne sont plus affichés.
+- Statuts, technologies et libellés de projets restent à confirmer par le propriétaire du site (aucune donnée n'a été inventée).

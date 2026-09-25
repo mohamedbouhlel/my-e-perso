@@ -4,7 +4,8 @@ import type { Translations } from './fr';
 const es: Translations = {
   meta: {
     title: 'Operius',
-    description: 'Operius — proyectos, competencias y contacto.',
+    description:
+      'Operius — soluciones técnicas del terreno al software: redes, infraestructura, automatización, desarrollo e IA.',
   },
 
   a11y: {
@@ -58,7 +59,7 @@ const es: Translations = {
   },
 
   footer: {
-    legal: 'Soluciones abiertas para un mundo más simple.',
+    legal: 'Soluciones útiles, fiables y controlables.',
     links: {
       github: 'github',
       linkedin: 'linkedin',
@@ -68,12 +69,8 @@ const es: Translations = {
 
   common: {
     contactCta: 'contactarme',
-    pendingValue: '—',
-    pendingPeriod: 'periodo por precisar',
     linkPending: 'Enlace por definir',
-    documentPending: 'Documento por proporcionar',
     all: 'Todos',
-    overview: 'Vista general',
     copy: 'copiar',
   },
 
@@ -85,97 +82,80 @@ const es: Translations = {
       aboutWorkshop: 'Taller: panel de herramientas, libros técnicos, pantalla de notas y taza',
       contactHero: 'Espacio de trabajo: portátil, taza y cuaderno',
       projectCockpitServers: 'Bastidores de servidores supervisados',
-      projectDomotique: 'Tableta domótica de pared que controla los equipos de la casa',
-      projectSecuriteReseaux: 'Cámara de videovigilancia en una fachada',
     },
   },
 
   home: {
-    eyebrow: '// soluciones concretas para tus proyectos',
-    title: ['Técnico.', 'Desarrollador.', 'Integrador.'],
-    lead: 'Acompaño a artesanos, micropymes y pymes en la implantación de soluciones fiables, sencillas y de código abierto: redes, domótica, seguridad, detección de incendios, IA y aplicaciones web.',
-    primaryCta: 'ver mis proyectos',
-    secondaryCta: 'contactarme',
-    visualLines: [
-      '# Necesidades concretas',
-      'analizar los usos',
-      'diseñar soluciones',
-      'desplegar correctamente',
-      'acompañar a largo plazo',
-      'compartir el conocimiento',
-      'seguir siendo código abierto',
+    eyebrow: '// mi enfoque',
+    title: ['No más tecnología.', 'La tecnología adecuada.'],
+    lead: [
+      'Diseño e integro soluciones técnicas que responden a problemas concretos, del trabajo de campo al software.',
+      'Redes, seguridad, corriente débil, domótica, automatización, desarrollo e IA: primero busco entender la necesidad y después elijo la solución más sencilla que pueda responder realmente a ella.',
     ],
-    quote: 'Herramientas útiles, no complicaciones innecesarias.',
+    primaryCta: 'Ver los proyectos',
+    secondaryCta: 'Hablar de tu necesidad',
+    visualLines: ['comprender', 'simplificar', 'construir', 'probar'],
+    quote: 'Comprender el problema antes de elegir la tecnología.',
     domains: {
       infrastructure: {
         title: 'Infraestructura',
-        text: 'Redes, fibra, seguridad, servidores y supervisión.',
+        hook: 'Hacer funcionar los sistemas sobre los que descansa todo.',
+        text: 'Redes, servidores, Linux, servicios e infraestructura: construir una base fiable, coherente y mantenible.',
       },
-      domotique: {
-        title: 'Domótica',
-        text: 'Soluciones conectadas para el hogar y el sector terciario.',
+      securite: {
+        title: 'Seguridad y corriente débil',
+        hook: 'Conectar la técnica con la realidad del terreno.',
+        text: 'Detección, seguridad, corriente débil y sistemas técnicos: integrar equipos que deben funcionar en condiciones reales.',
+      },
+      automatisation: {
+        title: 'Automatización y domótica',
+        hook: 'Hacer que los sistemas hagan lo que puede automatizarse.',
+        text: 'Supervisión, automatización y domótica para reducir las operaciones repetitivas y mejorar el control.',
       },
       developpement: {
-        title: 'Desarrollo',
-        text: 'Aplicaciones web, automatizaciones, IA.',
-      },
-      support: {
-        title: 'Soporte y consultoría',
-        text: 'Auditoría, instalación, formación, asistencia.',
+        title: 'Desarrollo e IA',
+        hook: 'Construir cuando las herramientas existentes no responden a la necesidad.',
+        text: 'Aplicaciones, scripts, herramientas y soluciones de IA cuando el desarrollo aporta una respuesta más adecuada que una acumulación de programas existentes.',
       },
     },
     domainLink: 'saber más',
-    profile: {
-      eyebrow: '// competencias',
-      title: 'Un perfil polivalente',
-      lead: 'Una combinación de trabajo de campo e informática para ofrecer soluciones completas y pragmáticas.',
-      checks: [
-        'Corriente débil y redes',
-        'Detección de incendios',
-        'Domótica',
-        'Linux y servidores',
-        'Docker y virtualización',
-        'Programación (Python, JS)',
-        'Bases de datos',
-        'IA local y RAG',
-        'Supervisión y monitorización',
-        'Código abierto',
-      ],
-      cvCta: 'ver mi CV',
-      tabs: {
-        experience: 'experiencia',
-        projects: 'proyectos',
-        tools: 'herramientas',
-      },
-      experienceTitle: 'años de experiencia',
-      experienceNote: 'valores por precisar (ninguna cifra validada)',
-      experienceRows: [
-        'Redes / Corriente débil',
-        'Domótica',
-        'Desarrollo',
-        'Linux / Servidores',
-        'IA y automatización',
-      ],
-      projectsTitle: 'proyectos en curso y en producción',
-      toolsTitle: 'tecnologías y herramientas',
-      toolsMore: 'ver todas las tecnologías',
+    approach: {
+      eyebrow: '// ¿por qué este enfoque?',
+      title: 'Porque un problema no siempre necesita más tecnología.',
+      lead: 'Un sistema puede ser técnicamente sofisticado y, aun así, difícil de usar, de mantener o de hacer evolucionar.',
+      stepsLead: 'Prefiero un enfoque distinto:',
+      steps: ['Comprender', 'Simplificar', 'Construir', 'Probar'],
+      closingLead: 'El resultado que busco no es la solución más impresionante.',
+      closing: 'Es una solución útil, fiable y controlable.',
     },
-    mission: {
-      eyebrow: '// mi misión',
-      title: 'Tecnologías al servicio del trabajo de campo',
-      text: 'Ayudar a los profesionales a ganar tiempo, proteger sus instalaciones y simplificar su día a día, con soluciones fiables y duraderas.',
-      action: 'hablemos de tu proyecto',
+    journey: {
+      title: 'Del terreno al software',
+      lead: 'Mi trayectoria reúne varios ámbitos que suelen tratarse por separado:',
+      steps: ['Corriente débil', 'Redes', 'Sistemas', 'Desarrollo', 'Automatización', 'IA'],
+      closing:
+        'Esta continuidad permite abordar un problema en varios niveles y comprender las interacciones entre las distintas capas.',
+    },
+    conviction: {
+      eyebrow: '// una convicción',
+      title: 'Una buena solución debe seguir siendo comprensible.',
+      text: 'Cuando es pertinente, doy prioridad a las tecnologías abiertas y a las soluciones que se pueden administrar, diagnosticar y hacer evolucionar sin depender innecesariamente de una caja negra. Las herramientas son un medio. El resultado es lo que cuenta.',
+      action: 'Hablar de tu proyecto',
     },
   },
 
   projects: {
     eyebrow: '// mis proyectos',
-    title: ['Proyectos concretos', 'para necesidades reales.'],
-    lead: 'Soluciones de código abierto, pragmáticas y documentadas para artesanos, micropymes y pymes y entornos técnicos.',
+    title: ['Problemas concretos.', 'Soluciones construidas para responder.'],
+    lead: [
+      'Los proyectos que aparecen aquí no son una colección de tecnologías.',
+      'Muestran una forma de trabajar: partir de una necesidad, entender las limitaciones, construir una solución y comprobar que funciona de verdad.',
+    ],
     heroVisualLines: ['# ideas', 'concepción', 'desarrollo', 'despliegue', 'mantenimiento'],
     filtersLabel: 'Filtrar los proyectos por categoría',
     linkLabel: 'ver el proyecto',
     repositoryLabel: 'GitHub',
+    approachLabel: 'Enfoque',
+    technologiesLabel: 'Tecnologías',
     pendingNote:
       'Los enlaces a los proyectos y a los repositorios se activarán cuando se validen las URL.',
     empty: 'Todavía no hay ningún proyecto en esta categoría.',
@@ -183,14 +163,16 @@ const es: Translations = {
       infrastructure: 'Infraestructura',
       ia: 'IA y automatización',
       developpement: 'Desarrollo',
-      domotique: 'Domótica',
-      securite: 'Seguridad',
     },
     items: {
       smartBtpProgest: {
         status: 'En desarrollo',
+        hook: 'Simplificar la gestión sin complicaciones innecesarias.',
         description:
-          'SaaS de gestión de proyectos para artesanos y pymes del sector de la construcción: planificación, seguimiento, presupuesto, colaboración.',
+          'Los artesanos y las pequeñas empresas necesitan herramientas adaptadas a su actividad, no necesariamente plataformas genéricas cargadas de funciones. Smart BTP ProGest explora un enfoque centrado en el proyecto, la planificación, las tareas, los documentos y el seguimiento.',
+        approach:
+          'Construir únicamente las funciones útiles en el día a día y mantener una arquitectura lo bastante sencilla para poder evolucionar.',
+        remark: '',
         visualLines: [
           '# gestión de proyectos de construcción',
           '→ planificación',
@@ -201,8 +183,12 @@ const es: Translations = {
       },
       versutusIa: {
         status: 'En producción',
+        hook: 'Entender la IA en lugar de limitarse a usarla.',
         description:
-          'Plataforma de IA local: LLM, RAG, herramientas, interfaces web y agentes. Código abierto.',
+          'Versutus IA explora una infraestructura de IA local capaz de reunir modelos, API, RAG, memoria y herramientas. El objetivo es controlar toda la cadena: instalación, ejecución, integración, medición y diagnóstico.',
+        approach:
+          'Priorizar la experimentación reproducible y la comprensión del funcionamiento en lugar de usar una solución opaca.',
+        remark: '',
         visualLines: [
           '# IA local · privada · útil',
           '→ cambiar un modelo',
@@ -213,8 +199,12 @@ const es: Translations = {
       },
       cockpitServers: {
         status: 'En producción',
+        hook: 'Una infraestructura solo es fiable cuando sus componentes funcionan juntos.',
         description:
-          'Infraestructura de servidores: correo, DNS, proxy inverso, copias de seguridad y supervisión.',
+          'DNS, correo, certificados, proxy inverso, Docker, red y servicios web deben formar un sistema coherente.',
+        approach:
+          'Administrar una infraestructura no consiste simplemente en instalar programas, sino en comprender sus interacciones y sus dependencias.',
+        remark: '',
         visualLines: [
           '# servicios y supervisión',
           '→ correo',
@@ -223,270 +213,195 @@ const es: Translations = {
           '→ copias de seguridad',
         ],
       },
-      domotique: {
-        status: 'En producción',
-        description:
-          'Integración de soluciones domóticas para el hogar y el sector terciario (KNX, Home Assistant…).',
-        visualLines: ['# confort y energía', '→ iluminación', '→ persianas', '→ calefacción', '→ escenas'],
-      },
-      outilsScripts: {
+      outilsAutomatisations: {
         status: 'En curso',
-        description: 'Scripts y herramientas de automatización para ahorrar tiempo en el día a día.',
-        visualLines: ['# automatización', '→ copias de seguridad', '→ scripts', '→ despliegue', '→ documentación'],
-      },
-      securiteReseaux: {
-        status: 'En producción',
-        description: 'Redes, videovigilancia, detección de incendios y control de accesos.',
+        hook: 'Eliminar las operaciones inútiles.',
+        description:
+          'Los scripts, las herramientas de administración y las automatizaciones permiten reducir las tareas repetitivas y hacer más fiables algunos procedimientos.',
+        approach: 'La automatización no es un fin en sí mismo.',
+        remark: 'Si el remedio es más complejo que el problema, probablemente haya que revisar el remedio.',
         visualLines: [
-          '# red y seguridad',
-          '→ videovigilancia',
-          '→ control de accesos',
-          '→ detección de incendios',
-          '→ supervisión',
+          '# automatización',
+          '→ copias de seguridad',
+          '→ scripts',
+          '→ despliegue',
+          '→ documentación',
         ],
       },
     },
     cta: {
-      eyebrow: '// ¿una idea de proyecto?',
-      title: 'Hablemos de lo que necesitas',
-      text: 'Te acompaño desde la idea hasta el despliegue, con soluciones sencillas, fiables y adaptadas a tu entorno.',
-      action: 'contactarme',
+      eyebrow: '// lo que estos proyectos tienen en común',
+      title: 'Analizar. Simplificar. Construir. Probar.',
+      text: 'Es este método, más que las tecnologías utilizadas, lo que constituye el hilo conductor.',
+      action: 'Hablar de tu proyecto',
     },
   },
 
   skills: {
     eyebrow: '// mis competencias',
-    title: ['Competencias', 'al servicio de tus', 'proyectos.'],
-    lead: 'Un perfil técnico y polivalente para diseñar, desplegar y mantener soluciones fiables, sencillas y duraderas.',
-    visualLines: ['# método de trabajo', 'plan', 'código', 'prueba', 'despliegue', 'mejora'],
-    quote: 'Herramientas útiles, no complicaciones innecesarias.',
-    filtersLabel: 'Filtrar las competencias por ámbito',
-    empty: 'Todavía no hay ningún elemento en este ámbito.',
-    metrics: {
-      experience: 'años de experiencia',
-      projects: 'proyectos realizados',
-      passion: 'pasión por el trabajo de campo y la tecnología',
-    },
+    title: ['Entender varias capas', 'de un mismo problema.'],
+    lead: [
+      'Una competencia técnica solo tiene valor cuando permite resolver algo.',
+      'Mi perfil abarca varios niveles, desde el hardware y las instalaciones hasta el software y la automatización.',
+    ],
+    quote: 'Es una solución útil, fiable y controlable.',
     domains: {
-      informatique: 'Informática',
-      domotique: 'Domótica',
-      reseaux: 'Redes y seguridad',
-      developpement: 'Desarrollo',
-      outils: 'Herramientas',
-      soft: 'Habilidades blandas',
-    },
-    keySkills: {
-      title: 'Competencias clave',
-      subtitle: 'Una base sólida y complementaria: trabajo de campo e informática.',
-      items: {
-        infrastructure: {
-          title: 'Infraestructura',
-          text: 'Servidores, virtualización, Docker, supervisión.',
-        },
-        domotique: {
-          title: 'Domótica',
-          text: 'KNX, Home Assistant, integraciones a medida.',
-        },
-        reseaux: {
-          title: 'Redes y seguridad',
-          text: 'Redes, firewall, VPN, supervisión, copias de seguridad.',
-        },
-        developpement: {
-          title: 'Desarrollo',
-          text: 'Python, Bash, JavaScript, automatización, APIs.',
-        },
-        basesDonnees: {
-          title: 'Bases de datos',
-          text: 'PostgreSQL, SQL, modelización, copias de seguridad.',
-        },
-        support: {
-          title: 'Soporte y consultoría',
-          text: 'Auditoría, instalación, formación, asistencia.',
-        },
+      terrain: {
+        title: 'Terreno',
+        subtitle: 'Corriente débil · Seguridad · Detección · Domótica',
+        text: 'Una experiencia directamente ligada a las instalaciones técnicas y a sus limitaciones reales. El sistema debe funcionar sobre el terreno, ser explotable y poder diagnosticarse.',
       },
-    },
-    mastery: {
-      title: 'Niveles de dominio',
-      subtitle: 'Una visión clara de mis áreas de especialización.',
-      note: 'Niveles por completar: ninguna cifra validada por el momento.',
-      rows: {
-        reseaux: 'Redes / Corriente débil',
-        linux: 'Linux / Servidores',
-        domotique: 'Domótica (KNX / HA)',
-        securite: 'Seguridad',
-        developpement: 'Desarrollo (Python / JS)',
-        basesDonnees: 'Bases de datos',
-        ia: 'IA y automatización',
+      infrastructure: {
+        title: 'Infraestructura',
+        subtitle: 'Redes · Linux · Servidores · Docker',
+        text: 'Diseñar, administrar y diagnosticar los sistemas que hacen funcionar los servicios. El objetivo no es acumular componentes, sino construir una infraestructura coherente con su uso.',
+      },
+      developpement: {
+        title: 'Desarrollo',
+        subtitle: 'Aplicaciones · Scripts · Automatización',
+        text: 'Desarrollar cuando una necesidad no puede cubrirse correctamente con las herramientas existentes. El código es un medio para eliminar una limitación, no un fin.',
+      },
+      ia: {
+        title: 'IA',
+        subtitle: 'Modelos locales · RAG · Integración · Automatización',
+        text: 'Explorar las posibilidades de la IA manteniendo el control del entorno técnico. Entender lo que ocurre detrás de la interfaz forma parte del trabajo.',
       },
     },
     technologies: {
-      title: 'Tecnologías y herramientas',
-      subtitle: 'Las herramientas que utilizo a diario.',
-      groups: {
-        systemes: 'sistemas',
-        reseaux: 'redes y seguridad',
-        developpement: 'desarrollo',
-        domotique: 'domótica',
-        basesDonnees: 'bases de datos',
-        ia: 'ia y automatización',
-      },
+      title: 'Tecnologías',
+      subtitle: 'Las herramientas cambian. Los principios permanecen.',
+      note: 'Esta lista indica tecnologías realmente utilizadas en distintos proyectos. No constituye una promesa de usar cada una de ellas para cada necesidad.',
     },
-    certifications: {
-      title: 'Certificaciones y formación',
-      subtitle: 'Un proceso continuo de aprendizaje.',
-      note: 'Denominaciones y periodos por confirmar antes de su publicación.',
-      items: {
-        linux: { title: 'Linux (Debian)', text: 'Experiencia avanzada' },
-        knx: { title: 'KNX', text: 'Formación y proyectos de campo' },
-        securite: { title: 'Seguridad de redes', text: 'Autoformación continua' },
-        python: { title: 'Python', text: 'Proyectos profesionales' },
-        docker: { title: 'Docker y contenedores', text: 'Proyectos y despliegues' },
-      },
-    },
+    projectsLink: 'Ver los proyectos',
     cta: {
-      eyebrow: '// desarrollar juntos',
-      title: '¿Un proyecto? Hablemos de lo que necesitas.',
-      text: 'Te acompaño desde la idea hasta la puesta en producción, con soluciones adaptadas y pragmáticas.',
-      action: 'contactarme',
+      eyebrow: '// lo que cuenta',
+      title: 'Entender el problema. Elegir el nivel de tecnología adecuado. Construir algo mantenible.',
+      action: 'Hablar de tu proyecto',
     },
   },
 
   about: {
     eyebrow: '// sobre mí',
-    title: ['Una trayectoria,', 'una pasión,', 'soluciones.'],
-    lead: 'Técnico en corriente débil, desarrollador e integrador, acompaño a artesanos, micropymes y pymes en la implantación de soluciones fiables, sencillas y duraderas, apoyándome en el código abierto y la experiencia de campo.',
-    primaryCta: 'contactarme',
-    cvCta: 'descargar mi CV',
-    visualLines: [
-      '# hilo conductor',
-      'entender la necesidad',
-      'diseñar con sencillez',
-      'desplegar y documentar',
-      'transmitir',
-      '# ideas · código · pruebas · impacto real',
+    title: ['Una trayectoria construida', 'entre el terreno y lo digital.'],
+    lead: [
+      'Mi trayectoria no ha seguido una sola especialidad.',
+      'Se ha construido poco a poco en torno a una misma necesidad: entender cómo funcionan los sistemas y cómo hacerlos funcionar juntos.',
     ],
-    quote: 'Herramientas útiles, no complicaciones innecesarias.',
-    metrics: {
-      experience: 'años de experiencia de campo e informática',
-      projects: 'proyectos realizados (micropymes, pymes, artesanos)',
-      passion: 'pasión y compromiso por soluciones útiles',
-      goal: 'objetivo: un entorno digital más sencillo',
+    primaryCta: 'Hablar de tu proyecto',
+    quote: 'Una buena solución debe seguir siendo comprensible.',
+    journey: {
+      eyebrow: '// trayectoria',
+      title: 'Del terreno al software',
+      intros: [
+        'La corriente débil me enseñó algo esencial:',
+        'Las redes y los sistemas añadieron otra dimensión:',
+        'El desarrollo aportó otra herramienta:',
+        'La automatización y la IA abren hoy una nueva posibilidad:',
+      ],
+      lessons: [
+        'una solución debe funcionar en el mundo real.',
+        'los componentes deben comunicarse y seguir siendo administrables.',
+        'cuando falta algo, se puede construir.',
+        'hacer más sin añadir necesariamente más complejidad.',
+      ],
     },
-    story: {
-      eyebrow: '// mi historia',
-      title: 'Una trayectoria polivalente',
-      lead: 'Me muevo en los ámbitos de las redes, la seguridad, la domótica y el desarrollo. Esta diversidad me permite tener una visión global y concreta de las necesidades, desde el trabajo de campo hasta la puesta en producción.',
-      timeline: {
-        diploma: {
-          title: 'Gestión de sistemas y redes',
-          text: 'Formación en informática y redes.',
+    profile: {
+      title: 'Un perfil híbrido',
+      lead: 'Puedo mirar un mismo problema desde varios niveles:',
+      layers: ['Instalación', 'Red', 'Sistema', 'Software', 'Automatización'],
+      paragraphs: [
+        'Esto no significa que siempre haya que intervenir en todas esas capas.',
+        'Significa que es posible entender dónde está realmente el problema antes de elegir cómo tratarlo.',
+      ],
+    },
+    principles: {
+      title: 'Lo que priorizo',
+      items: {
+        simplicity: {
+          title: 'La sencillez útil.',
+          text: 'Una solución no es mejor por tener más funciones.',
         },
-        technician: {
-          title: 'Técnico en corriente débil',
-          text: 'Redes, seguridad contra incendios, control de accesos, videoportero, domótica.',
+        mastery: {
+          title: 'El control.',
+          text: 'Entender cómo funciona un sistema facilita su explotación y su evolución.',
         },
-        integrator: {
-          title: 'Integrador y desarrollador',
-          text: 'Soluciones a medida para artesanos y pymes. Automatización, scripts, herramientas internas.',
+        proportion: {
+          title: 'La proporción.',
+          text: 'Una pequeña dificultad no justifica necesariamente una gran arquitectura.',
         },
-        personal: {
-          title: 'Proyectos personales y divulgación',
-          text: 'Versutus-IA, Smart BTP ProGest, domótica y seguridad.',
+        openness: {
+          title: 'La apertura.',
+          text: 'Cuando es pertinente, las tecnologías abiertas permiten limitar ciertas dependencias y conservar más control.',
         },
       },
     },
-    values: {
-      title: 'Mis valores',
-      items: [
-        'Sencillez antes que complejidad',
-        'Soluciones concretas y duraderas',
-        'Código abierto e independencia',
-        'Compartir conocimientos',
-        'Escucha y acompañamiento',
-        'Calidad y fiabilidad',
-        'Mejora continua',
-      ],
-    },
-    motivation: {
-      title: 'Lo que me motiva',
-      paragraphs: [
-        'Ayudar a los profesionales a ganar tiempo, proteger sus instalaciones y simplificar su día a día, apoyándome en tecnologías abiertas y contrastadas.',
-        'Creo en un entorno digital sobrio, útil y controlado, al servicio del trabajo de campo.',
-      ],
-      quote: 'Las mejores soluciones son las que desaparecen detrás del uso.',
-    },
-    wideVisualLines: [
-      '# aprender · compartir · construir',
-      'linux',
-      'redes',
-      'domótica',
-      'seguridad',
-      'python',
-      'open source',
-    ],
     cta: {
-      eyebrow: '// ¿y ahora qué?',
-      title: '¿Un proyecto? Hablemos.',
-      text: 'Ya sea para un asesoramiento, una integración o el desarrollo de una solución a medida, estoy a tu disposición.',
-      action: 'contactarme',
+      eyebrow: '// conclusión',
+      title: 'Construir soluciones que todavía se puedan entender mañana.',
+      text: 'Es probablemente el mejor criterio para juzgar una solución técnica. No su número de funciones. No la novedad de su tecnología. Su capacidad de seguir siendo útil, fiable y controlable con el tiempo.',
+      action: 'Hablar de tu proyecto',
     },
   },
 
   contact: {
     eyebrow: '// contacto',
-    title: ['Hablemos', 'de tu proyecto.'],
-    lead: '¿Una idea, una necesidad, una pregunta? Estoy a tu disposición para hablar de tus proyectos y encontrar juntos soluciones concretas, sencillas y adaptadas a tu entorno.',
-    highlights: {
-      response: { title: 'Respuesta rápida', text: 'plazo por precisar' },
-      exchange: { title: 'Conversación sin compromiso', text: '' },
-      confidential: { title: 'Confidencial y seguro', text: '' },
-    },
-    visualLines: [
-      '# diseñar · desplegar · simplificar',
-      'entender la necesidad',
-      'proponer una solución clara',
-      'presupuestar sin sorpresas',
-      'desplegar y documentar',
-      'seguir disponible',
+    title: ['¿Tienes un problema técnico?', 'Empecemos por entenderlo.'],
+    lead: ['No necesitas conocer la solución antes de ponerte en contacto.'],
+    listLead: 'Explica sencillamente:',
+    list: [
+      'lo que no funciona',
+      'lo que te gustaría mejorar',
+      'lo que quieres construir',
+      'o simplemente lo que buscas entender.',
     ],
-    form: {
-      title: 'Envíame un mensaje',
-      subtitle: 'Te responderé lo antes posible.',
-      requiredMark: '*',
-      optionalMark: '(opcional)',
-      fields: {
-        name: 'Nombre',
-        email: 'Email',
-        company: 'Empresa',
-        subject: 'Asunto',
-        message: 'Tu mensaje',
+    expectations: {
+      title: 'Lo que puedes esperar',
+      items: {
+        noPaste: {
+          title: 'Ninguna solución impuesta.',
+          text: 'Se parte del contexto real y de lo que ya existe.',
+        },
+        noFreeComplexity: {
+          title: 'Ninguna complejidad innecesaria.',
+          text: 'Cada componente debe tener una razón de ser.',
+        },
+        explainedChoices: {
+          title: 'Decisiones explicadas.',
+          text: 'Una solución técnica debe poder entenderse y justificarse.',
+        },
+        proportionate: {
+          title: 'Una respuesta proporcionada.',
+          text: 'El nivel de tecnología adecuado depende del problema, no al contrario.',
+        },
       },
+    },
+    form: {
+      title: 'Describir mi necesidad',
+      requiredMark: '*',
+      fields: {
+        name: 'Tu nombre',
+        email: 'Tu dirección de correo electrónico',
+        subject: 'Asunto',
+        message: 'Describe tu necesidad',
+      },
+      messagePlaceholder: 'Unas líneas bastan para empezar.',
       subjectPlaceholder: 'Elegir un asunto',
-      subjects: ['Infraestructura', 'Domótica', 'Redes y seguridad', 'Desarrollo', 'Otro'],
+      subjects: [
+        'Terreno / corriente débil',
+        'Infraestructura / redes',
+        'Automatización y domótica',
+        'Desarrollo e IA',
+        'Otro',
+      ],
       submit: 'Enviar el mensaje',
       notice:
         'Envío desactivado: no hay ningún servicio de envío conectado por el momento. El formulario está listo para conectarse.',
     },
-    methods: {
-      title: 'Otras formas de contactarme',
-      subtitle: 'Elige el canal que prefieras.',
-      items: {
-        email: { title: 'Email', value: 'dirección por completar' },
-        phone: { title: 'Teléfono', value: 'número por completar' },
-        location: { title: 'Ubicación', value: 'por precisar' },
-      },
-    },
-    zone: {
-      title: 'Zona de intervención',
-      subtitle: 'En el lugar o a distancia.',
-      items: ['Zona geográfica por precisar', 'Telemantenimiento', 'Proyectos a distancia'],
-      badge: 'Soluciones locales para un impacto duradero.',
-    },
     cta: {
-      eyebrow: '// ¿tienes un proyecto en mente?',
-      title: 'Transformemos tus ideas en soluciones concretas.',
-      text: 'Ya sea para un asesoramiento, una instalación, un desarrollo o una colaboración, hablemos de forma sencilla.',
-      note: '¡Hasta pronto!',
+      eyebrow: '// conclusión',
+      title: 'El primer trabajo consiste en entender la necesidad.',
+      text: 'No hace falta haber definido ya con precisión la solución.',
+      note: '¿Una idea, un problema, un proyecto?',
     },
   },
 };

@@ -4,7 +4,8 @@ import Icon from './Icon';
 type CallToActionProps = {
   eyebrow: string;
   title: string;
-  text: string;
+  /** Facultatif : certaines conclusions tiennent en un titre et une action. */
+  text?: string;
   action?: { label: string; target: SectionId };
   note?: string;
 };
@@ -18,8 +19,8 @@ export default function CallToAction({ eyebrow, title, text, action, note }: Cal
       </span>
       <div className="cta__body">
         <p className="eyebrow">{eyebrow}</p>
-        <h3 className="cta__title">{title}</h3>
-        <p className="cta__text">{text}</p>
+        <h2 className="cta__title">{title}</h2>
+        {text && <p className="cta__text">{text}</p>}
       </div>
       <div className="cta__action">
         {action ? (

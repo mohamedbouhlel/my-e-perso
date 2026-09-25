@@ -16,6 +16,7 @@ const ALL = 'tous';
 export default function ProjectsSection() {
   const { t } = useTranslation();
   const title = useTranslatedList('projects.title');
+  const lead = useTranslatedList('projects.lead');
   const heroVisualLines = useTranslatedList('projects.heroVisualLines');
   const [category, setCategory] = useState<string>(ALL);
 
@@ -35,7 +36,7 @@ export default function ProjectsSection() {
       <Hero
         eyebrow={t('projects.eyebrow')}
         title={title}
-        lead={t('projects.lead')}
+        lead={lead}
         visual={
           <PhotoVisual
             src={visualSources.projectsHero}
@@ -61,7 +62,7 @@ export default function ProjectsSection() {
       />
 
       {visibleProjects.length > 0 ? (
-        <div className="grid grid--3">
+        <div className="grid grid--2">
           {visibleProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

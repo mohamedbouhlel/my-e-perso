@@ -75,7 +75,8 @@
 .highlights {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  /* Deux colonnes dans la carte en demi-largeur (quatre entrées), davantage si la place le permet. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
 }
 
 .highlight {

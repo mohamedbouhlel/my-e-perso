@@ -11,9 +11,7 @@ export type VisualId =
   | 'aboutHero'
   | 'aboutWorkshop'
   | 'contactHero'
-  | 'projectCockpitServers'
-  | 'projectDomotique'
-  | 'projectSecuriteReseaux';
+  | 'projectCockpitServers';
 
 /** Chemins servis tels quels depuis `public/` (aucune transformation du bundler). */
 export const visualSources: Record<VisualId, string> = {
@@ -23,6 +21,4 @@ export const visualSources: Record<VisualId, string> = {
   aboutWorkshop: '/images/about-workshop.jpg',
   contactHero: '/images/contact-hero.jpg',
   projectCockpitServers: '/images/project-cockpit-servers.jpg',
-  projectDomotique: '/images/project-domotique.jpg',
-  projectSecuriteReseaux: '/images/project-securite-reseaux.jpg',
 };

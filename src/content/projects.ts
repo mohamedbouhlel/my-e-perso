@@ -2,16 +2,14 @@ import type { IconName } from '../components/Icon';
 import type { PhotoOverlay } from '../components/PhotoVisual';
 import type { VisualId } from './visuals';
 
-export type ProjectCategory = 'infrastructure' | 'ia' | 'developpement' | 'domotique' | 'securite';
+export type ProjectCategory = 'infrastructure' | 'ia' | 'developpement';
 
 /** Clé de traduction dans `projects.items.<key>`. */
 export type ProjectKey =
   | 'smartBtpProgest'
   | 'versutusIa'
   | 'cockpitServers'
-  | 'domotique'
-  | 'outilsScripts'
-  | 'securiteReseaux';
+  | 'outilsAutomatisations';
 
 /**
  * Visuel d'une carte :
@@ -45,8 +43,6 @@ export const projectCategoryIds: (ProjectCategory | 'tous')[] = [
   'infrastructure',
   'ia',
   'developpement',
-  'domotique',
-  'securite',
 ];
 
 export const projects: Project[] = [
@@ -56,7 +52,7 @@ export const projects: Project[] = [
     name: 'Smart BTP ProGest',
     icon: 'monitor',
     statusTone: 'green',
-    tags: ['FastAPI', 'React', 'PostgreSQL', 'Docker'],
+    tags: ['FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'Docker'],
     categories: ['developpement'],
     visual: { kind: 'panel', file: 'smart-btp-progest/' },
     link: null,
@@ -65,10 +61,10 @@ export const projects: Project[] = [
   {
     id: 'versutus-ia',
     key: 'versutusIa',
-    name: 'Versutus-IA',
+    name: 'Versutus IA',
     icon: 'gear',
     statusTone: 'green',
-    tags: ['llama.cpp', 'Docker', 'OpenWebUI', 'Python'],
+    tags: ['Linux', 'Docker', 'llama.cpp', 'Python', 'RAG'],
     categories: ['ia', 'developpement'],
     visual: { kind: 'panel', file: 'versutus-ia/' },
     link: null,
@@ -87,38 +83,14 @@ export const projects: Project[] = [
     repository: null,
   },
   {
-    id: 'domotique',
-    key: 'domotique',
-    name: 'Solutions Domotique',
-    icon: 'home',
-    statusTone: 'green',
-    tags: ['Home Assistant', 'KNX', 'MQTT', 'Zigbee'],
-    categories: ['domotique'],
-    visual: { kind: 'photo', visualId: 'projectDomotique', overlay: 'none' },
-    link: null,
-    repository: null,
-  },
-  {
-    id: 'outils-scripts',
-    key: 'outilsScripts',
-    name: 'Outils & Scripts',
+    id: 'outils-automatisations',
+    key: 'outilsAutomatisations',
+    name: 'Outils & automatisations',
     icon: 'code',
     statusTone: 'amber',
     tags: ['Bash', 'Python', 'Docker', 'Linux'],
     categories: ['developpement'],
     visual: { kind: 'panel', file: 'outils/' },
-    link: null,
-    repository: null,
-  },
-  {
-    id: 'securite-reseaux',
-    key: 'securiteReseaux',
-    name: 'Sécurité & Réseaux',
-    icon: 'shield',
-    statusTone: 'green',
-    tags: ['Ubiquiti', 'Hikvision', 'PfSense', 'Nftables'],
-    categories: ['securite', 'infrastructure'],
-    visual: { kind: 'photo', visualId: 'projectSecuriteReseaux', overlay: 'card-right' },
     link: null,
     repository: null,
   },

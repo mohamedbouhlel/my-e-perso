@@ -1,22 +1,18 @@
 import type { IconName } from '../components/Icon';
 
-export type ContactHighlightKey = 'response' | 'exchange' | 'confidential';
+/** Ce qu'un visiteur peut attendre d'un premier échange (page Contact). */
+export type ContactExpectationKey =
+  | 'noPaste'
+  | 'noFreeComplexity'
+  | 'explainedChoices'
+  | 'proportionate';
 
-export const contactHighlights: { key: ContactHighlightKey; icon: IconName }[] = [
-  { key: 'response', icon: 'chat' },
-  { key: 'exchange', icon: 'users' },
-  { key: 'confidential', icon: 'shield' },
-];
-
-export type ContactMethodKey = 'email' | 'phone' | 'location';
-
-export const contactMethods: { key: ContactMethodKey; icon: IconName }[] = [
-  { key: 'email', icon: 'mail' },
-  { key: 'phone', icon: 'phone' },
-  { key: 'location', icon: 'pin' },
+export const contactExpectations: { key: ContactExpectationKey; icon: IconName }[] = [
+  { key: 'noPaste', icon: 'chat' },
+  { key: 'noFreeComplexity', icon: 'gear' },
+  { key: 'explainedChoices', icon: 'bulb' },
+  { key: 'proportionate', icon: 'target' },
 ];
 
 /** Limite technique du champ message (non traduite). */
 export const CONTACT_MESSAGE_MAX_LENGTH = 1000;
-
-export const contactMethodIconsUsed: IconName[] = contactMethods.map((method) => method.icon);

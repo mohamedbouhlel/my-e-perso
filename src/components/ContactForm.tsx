@@ -12,7 +12,7 @@ export default function ContactForm() {
   const noticeId = 'contact-form-notice';
 
   return (
-    <Card icon="mail" title={t('contact.form.title')} subtitle={t('contact.form.subtitle')}>
+    <Card icon="mail" title={t('contact.form.title')}>
       <form className="form" aria-describedby={noticeId}>
         <div className="form__grid">
           <div className="form__field">
@@ -44,20 +44,6 @@ export default function ContactForm() {
           </div>
 
           <div className="form__field form__field--full">
-            <label className="form__label" htmlFor="contact-company">
-              {t('contact.form.fields.company')}{' '}
-              <span className="form__optional">{t('contact.form.optionalMark')}</span>
-            </label>
-            <input
-              className="form__input"
-              id="contact-company"
-              name="company"
-              type="text"
-              autoComplete="organization"
-            />
-          </div>
-
-          <div className="form__field form__field--full">
             <label className="form__label" htmlFor="contact-subject">
               {t('contact.form.fields.subject')} {t('contact.form.requiredMark')}
             </label>
@@ -82,6 +68,7 @@ export default function ContactForm() {
               id="contact-message"
               name="message"
               maxLength={CONTACT_MESSAGE_MAX_LENGTH}
+              placeholder={t('contact.form.messagePlaceholder')}
               value={message}
               onChange={(event) => setMessage(event.target.value)}
               required

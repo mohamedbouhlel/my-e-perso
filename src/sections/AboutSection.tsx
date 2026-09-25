@@ -4,53 +4,33 @@ import Card from '../components/Card';
 import CheckList from '../components/CheckList';
 import Hero from '../components/Hero';
 import Icon from '../components/Icon';
-import Metrics from '../components/Metrics';
 import PhotoVisual from '../components/PhotoVisual';
-import Timeline from '../components/Timeline';
-import { aboutIcons, aboutMetrics, aboutTimeline } from '../content/about';
+import { aboutPrinciples, principlesIcon } from '../content/about';
 import { visualSources } from '../content/visuals';
 import { useTranslatedList } from '../i18n';
 
 export default function AboutSection() {
   const { t } = useTranslation();
   const title = useTranslatedList('about.title');
-  const values = useTranslatedList('about.values.items');
-  const motivationParagraphs = useTranslatedList('about.motivation.paragraphs');
-
-  const metrics = aboutMetrics.map(({ key, icon }) => ({ icon, label: t(`about.metrics.${key}`) }));
-  const timeline = aboutTimeline.map(({ key, current }) => ({
-    title: t(`about.story.timeline.${key}.title`),
-    text: t(`about.story.timeline.${key}.text`),
-    current,
-  }));
+  const lead = useTranslatedList('about.lead');
+  const journeyIntros = useTranslatedList('about.journey.intros');
+  const journeyLessons = useTranslatedList('about.journey.lessons');
+  const layers = useTranslatedList('about.profile.layers');
+  const profileParagraphs = useTranslatedList('about.profile.paragraphs');
 
   return (
     <section className="section">
       <Hero
         eyebrow={t('about.eyebrow')}
         title={title}
-        lead={t('about.lead')}
+        lead={lead}
         actions={
-          <>
-            <a className="btn btn--primary" href="#contact">
-              {t('about.primaryCta')}
-              <span className="btn__icon">
-                <Icon name="arrow-right" size={16} />
-              </span>
-            </a>
-            {/* Aucun fichier de CV n'est fourni : l'emplacement existe mais reste inactif. */}
-            <button
-              type="button"
-              className="btn btn--outline"
-              disabled
-              title={t('common.documentPending')}
-            >
-              {t('about.cvCta')}
-              <span className="btn__icon">
-                <Icon name="download" size={16} />
-              </span>
-            </button>
-          </>
+          <a className="btn btn--primary" href="#contact">
+            {t('about.primaryCta')}
+            <span className="btn__icon">
+              <Icon name="arrow-right" size={16} />
+            </span>
+          </a>
         }
         visual={
           <PhotoVisual
@@ -64,27 +44,46 @@ export default function AboutSection() {
         }
       />
 
-      <Metrics items={metrics} pendingValue={t('common.pendingValue')} card />
-
       <div className="about-story">
         <div className="profile-block">
-          <p className="eyebrow">{t('about.story.eyebrow')}</p>
-          <h3 className="block-title">{t('about.story.title')}</h3>
-          <p className="section-lead">{t('about.story.lead')}</p>
-          <Timeline items={timeline} pendingPeriod={t('common.pendingPeriod')} />
+          <p className="eyebrow">{t('about.journey.eyebrow')}</p>
+          <h2 className="block-title">{t('about.journey.title')}</h2>
+          {/* Chaque étape relie un domaine à la leçon qu'il a apportée. */}
+          {journeyLessons.map((lesson, index) => (
+            <p className="section-lead" key={lesson}>
+              {journeyIntros[index]} <strong>{lesson}</strong>
+            </p>
+          ))}
         </div>
 
-        <Card icon={aboutIcons.values} title={t('about.values.title')}>
-          <CheckList items={values} single />
-        </Card>
-
-        <Card icon={aboutIcons.motivation} title={t('about.motivation.title')}>
-          {motivationParagraphs.map((paragraph) => (
+        <Card title={t('about.profile.title')}>
+          <p className="card__text">{t('about.profile.lead')}</p>
+          <CheckList items={layers} single />
+          {profileParagraphs.map((paragraph) => (
             <p className="card__text" key={paragraph}>
               {paragraph}
             </p>
           ))}
-          <blockquote className="quote quote--card">{t('about.motivation.quote')}</blockquote>
+        </Card>
+
+        <Card icon={principlesIcon} title={t('about.principles.title')}>
+          <ul className="info-list">
+            {aboutPrinciples.map((item) => (
+              <li className="info-list__item" key={item.key}>
+                <span className="info-list__icon">
+                  <Icon name={item.icon} size={18} />
+                </span>
+                <div>
+                  <p className="info-list__title">
+                    {t(`about.principles.items.${item.key}.title`)}
+                  </p>
+                  <p className="info-list__text">
+                    {t(`about.principles.items.${item.key}.text`)}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </Card>
       </div>
 

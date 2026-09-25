@@ -10,8 +10,8 @@ export const siteIdentity = {
   name: 'Operius',
   monogram: 'O',
   /**
-   * Adresse affichée dans le chrome. Provisoire et volontairement non routable
-   * (`.local` est réservé) : le domaine réel reste à définir.
+   * Adresse affichée dans le chrome. Correspond au domaine réellement servi
+   * (`https://operius.fr/`, voir la procédure de déploiement).
    */
   address: 'operius.fr',
 };

@@ -4,7 +4,8 @@ import type { Translations } from './fr';
 const de: Translations = {
   meta: {
     title: 'Operius',
-    description: 'Operius — Projekte, Kompetenzen und Kontakt.',
+    description:
+      'Operius — technische Lösungen von der Praxis bis zur Software: Netzwerke, Infrastruktur, Automatisierung, Entwicklung und KI.',
   },
 
   a11y: {
@@ -58,7 +59,7 @@ const de: Translations = {
   },
 
   footer: {
-    legal: 'Offene Lösungen für eine einfachere Welt.',
+    legal: 'Nützliche, zuverlässige und beherrschbare Lösungen.',
     links: {
       github: 'github',
       linkedin: 'linkedin',
@@ -68,15 +69,12 @@ const de: Translations = {
 
   common: {
     contactCta: 'kontakt aufnehmen',
-    pendingValue: '—',
-    pendingPeriod: 'Zeitraum noch anzugeben',
     linkPending: 'Link noch festzulegen',
-    documentPending: 'Dokument noch bereitzustellen',
     all: 'Alle',
-    overview: 'Überblick',
     copy: 'kopieren',
   },
 
+  /** Alternativtexte der Foto-Visuals (siehe `src/content/visuals.ts`). */
   visuals: {
     alt: {
       projectsHero: 'Technischer Arbeitsplatz: Code-Bildschirme, Pflanze und Tasse',
@@ -85,97 +83,81 @@ const de: Translations = {
       aboutWorkshop: 'Werkstatt: Werkzeugwand, Fachbücher, Notizbildschirm und Tasse',
       contactHero: 'Arbeitsplatz: Laptop, Tasse und Notizbuch',
       projectCockpitServers: 'Überwachte Server-Racks',
-      projectDomotique: 'Wandtablet für Smart Home zur Steuerung der Hausgeräte',
-      projectSecuriteReseaux: 'Überwachungskamera an einer Fassade',
     },
   },
 
   home: {
-    eyebrow: '// konkrete lösungen für ihre projekte',
-    title: ['Techniker.', 'Entwickler.', 'Integrator.'],
-    lead: 'Ich begleite Handwerksbetriebe sowie kleine und mittlere Unternehmen bei der Umsetzung zuverlässiger, einfacher und quelloffener Lösungen: Netzwerke, Smart Home, Sicherheit, Brandmeldetechnik, KI und Webanwendungen.',
-    primaryCta: 'meine projekte ansehen',
-    secondaryCta: 'kontakt aufnehmen',
-    visualLines: [
-      '# Konkrete Anforderungen',
-      'Nutzung analysieren',
-      'Lösungen entwerfen',
-      'sauber bereitstellen',
-      'langfristig begleiten',
-      'Wissen teilen',
-      'open-source bleiben',
+    eyebrow: '// mein ansatz',
+    title: ['Nicht mehr Technologie.', 'Die richtige Technologie.'],
+    lead: [
+      'Ich entwerfe und integriere technische Lösungen, die konkrete Probleme lösen — von der Praxis bis zur Software.',
+      'Netzwerke, Sicherheit, Schwachstrom, Smart Home, Automatisierung, Entwicklung und KI: Zuerst verstehe ich den Bedarf, dann wähle ich die einfachste Lösung, die ihn wirklich beantwortet.',
     ],
-    quote: 'Nützliche Werkzeuge, keine überladenen Lösungen.',
+    primaryCta: 'Projekte ansehen',
+    secondaryCta: 'Über Ihr Anliegen sprechen',
+    /** Methode im Hero-Panel: die vier Schritte der Redaktion V3. */
+    visualLines: ['Verstehen', 'Vereinfachen', 'Bauen', 'Testen'],
+    quote: 'Das Problem verstehen, bevor man die Technologie wählt.',
     domains: {
       infrastructure: {
         title: 'Infrastruktur',
-        text: 'Netzwerke, Glasfaser, Sicherheit, Server und Monitoring.',
+        hook: 'Die Systeme am Laufen halten, auf denen alles andere aufbaut.',
+        text: 'Netzwerke, Server, Linux, Dienste und Infrastruktur: eine zuverlässige, stimmige und wartbare Grundlage aufbauen.',
       },
-      domotique: {
-        title: 'Smart Home',
-        text: 'Vernetzte Lösungen für Wohn- und Gewerbegebäude.',
+      securite: {
+        title: 'Sicherheit & Schwachstrom',
+        hook: 'Technik mit der Realität vor Ort verbinden.',
+        text: 'Detektion, Sicherheit, Schwachstrom und technische Systeme: Geräte integrieren, die unter realen Bedingungen funktionieren müssen.',
+      },
+      automatisation: {
+        title: 'Automatisierung & Smart Home',
+        hook: 'Systeme erledigen lassen, was automatisch möglich ist.',
+        text: 'Überwachung, Automatisierung und Smart Home, um wiederkehrende Abläufe zu reduzieren und die Kontrolle zu verbessern.',
       },
       developpement: {
-        title: 'Entwicklung',
-        text: 'Webanwendungen, Automatisierungen, KI.',
-      },
-      support: {
-        title: 'Support & Beratung',
-        text: 'Audit, Installation, Schulung, Unterstützung.',
+        title: 'Entwicklung & KI',
+        hook: 'Bauen, wenn bestehende Werkzeuge den Bedarf nicht abdecken.',
+        text: 'Anwendungen, Skripte, Werkzeuge und KI-Lösungen, wenn Entwicklung die passendere Antwort gibt als das Stapeln bestehender Software.',
       },
     },
     domainLink: 'mehr erfahren',
-    profile: {
-      eyebrow: '// kompetenzen',
-      title: 'Ein vielseitiges Profil',
-      lead: 'Eine Mischung aus Praxis und IT für vollständige und pragmatische Lösungen.',
-      checks: [
-        'Schwachstrom & Netzwerke',
-        'Brandmeldetechnik',
-        'Smart Home',
-        'Linux & Server',
-        'Docker & Virtualisierung',
-        'Programmierung (Python, JS)',
-        'Datenbanken',
-        'Lokale KI & RAG',
-        'Überwachung & Monitoring',
-        'Open Source',
-      ],
-      cvCta: 'meinen lebenslauf ansehen',
-      tabs: {
-        experience: 'erfahrung',
-        projects: 'projekte',
-        tools: 'werkzeuge',
-      },
-      experienceTitle: 'jahre erfahrung',
-      experienceNote: 'werte noch anzugeben (keine zahl bestätigt)',
-      experienceRows: [
-        'Netzwerke / Schwachstrom',
-        'Smart Home',
-        'Entwicklung',
-        'Linux / Server',
-        'KI & Automatisierung',
-      ],
-      projectsTitle: 'projekte in entwicklung und produktion',
-      toolsTitle: 'technologien & werkzeuge',
-      toolsMore: 'alle technologien ansehen',
+    approach: {
+      eyebrow: '// warum dieser ansatz?',
+      title: 'Weil ein Problem nicht immer mehr Technologie braucht.',
+      lead: 'Ein System kann technisch anspruchsvoll und trotzdem schwer zu bedienen, zu warten oder weiterzuentwickeln sein.',
+      stepsLead: 'Ich setze auf einen anderen Ansatz:',
+      steps: ['Verstehen', 'Vereinfachen', 'Bauen', 'Testen'],
+      closingLead: 'Das angestrebte Ergebnis ist nicht die beeindruckendste Lösung.',
+      closing: 'Sondern eine nützliche, zuverlässige und beherrschbare Lösung.',
     },
-    mission: {
-      eyebrow: '// meine mission',
-      title: 'Technologien im Dienst der Praxis',
-      text: 'Professionellen helfen, Zeit zu gewinnen, ihre Anlagen zu sichern und ihren Alltag zu vereinfachen, mit zuverlässigen und dauerhaften Lösungen.',
-      action: 'sprechen wir über ihr projekt',
+    journey: {
+      title: 'Von der Praxis zur Software',
+      lead: 'Mein Werdegang vereint mehrere Bereiche, die sonst getrennt behandelt werden:',
+      steps: ['Schwachstrom', 'Netzwerke', 'Systeme', 'Entwicklung', 'Automatisierung', 'KI'],
+      closing:
+        'Diese Kontinuität erlaubt es, ein Problem auf mehreren Ebenen zu betrachten und die Wechselwirkungen zwischen den Schichten zu verstehen.',
+    },
+    conviction: {
+      eyebrow: '// eine überzeugung',
+      title: 'Eine gute Lösung muss verständlich bleiben.',
+      text: 'Wo es sinnvoll ist, setze ich auf offene Technologien und Lösungen, die man administrieren, diagnostizieren und weiterentwickeln kann, ohne unnötig von einer Blackbox abzuhängen. Die Werkzeuge sind ein Mittel. Das Ergebnis zählt.',
+      action: 'Über Ihr Projekt sprechen',
     },
   },
 
   projects: {
     eyebrow: '// meine projekte',
-    title: ['Konkrete Projekte', 'für echte Anforderungen.'],
-    lead: 'Open-Source-Lösungen, pragmatisch und dokumentiert für Handwerksbetriebe, KMU und technische Umgebungen.',
+    title: ['Konkrete Probleme.', 'Lösungen, die genau darauf antworten.'],
+    lead: [
+      'Die hier gezeigten Projekte sind keine Sammlung von Technologien.',
+      'Sie zeigen eine Arbeitsweise: von einem Bedarf ausgehen, die Rahmenbedingungen verstehen, eine Lösung bauen und prüfen, ob sie wirklich funktioniert.',
+    ],
     heroVisualLines: ['# Ideen', 'Konzeption', 'Entwicklung', 'Bereitstellung', 'Wartung'],
     filtersLabel: 'Projekte nach Kategorie filtern',
     linkLabel: 'projekt ansehen',
     repositoryLabel: 'GitHub',
+    approachLabel: 'Ansatz',
+    technologiesLabel: 'Technologien',
     pendingNote:
       'Die Links zu den Projekten und Repositories werden aktiviert, sobald die URLs validiert sind.',
     empty: 'Noch keine Projekte in dieser Kategorie.',
@@ -183,14 +165,16 @@ const de: Translations = {
       infrastructure: 'Infrastruktur',
       ia: 'KI & Automatisierung',
       developpement: 'Entwicklung',
-      domotique: 'Smart Home',
-      securite: 'Sicherheit',
     },
     items: {
       smartBtpProgest: {
         status: 'In Entwicklung',
+        hook: 'Die Verwaltung vereinfachen, ohne eine überladene Lösung zu bauen.',
         description:
-          'SaaS für Projektmanagement für Handwerksbetriebe und KMU im Bauwesen: Planung, Nachverfolgung, Budget, Zusammenarbeit.',
+          'Handwerksbetriebe und kleine Unternehmen brauchen Werkzeuge, die zu ihrer Tätigkeit passen, nicht unbedingt überladene Allzweckplattformen. Smart BTP ProGest erkundet einen Ansatz rund um Projekt, Planung, Aufgaben, Dokumente und Nachverfolgung.',
+        approach:
+          'Nur die im Alltag nützlichen Funktionen bauen und eine Architektur beibehalten, die einfach genug bleibt, um sich weiterzuentwickeln.',
+        remark: '',
         visualLines: [
           '# Bauprojektmanagement',
           '→ Planung',
@@ -201,8 +185,12 @@ const de: Translations = {
       },
       versutusIa: {
         status: 'In Produktion',
+        hook: 'KI verstehen, statt sie nur zu benutzen.',
         description:
-          'Lokale KI-Plattform: LLM, RAG, Werkzeuge, Weboberflächen und Agenten. Open Source.',
+          'Versutus IA erkundet eine lokale KI-Infrastruktur, die Modelle, API, RAG, Speicher und Werkzeuge zusammenführt. Das Ziel ist, die gesamte Kette zu beherrschen: Installation, Ausführung, Integration, Messung und Diagnose.',
+        approach:
+          'Reproduzierbares Experimentieren und das Verständnis der Funktionsweise bevorzugen, statt eine undurchsichtige Lösung zu verwenden.',
+        remark: '',
         visualLines: [
           '# Lokale KI · privat · nützlich',
           '→ Modell wechseln',
@@ -213,8 +201,12 @@ const de: Translations = {
       },
       cockpitServers: {
         status: 'In Produktion',
+        hook: 'Eine Infrastruktur ist erst zuverlässig, wenn ihre Komponenten zusammenwirken.',
         description:
-          'Serverinfrastruktur: Mail, DNS, Reverse Proxy, Backups und Monitoring.',
+          'DNS, Mail, Zertifikate, Reverse Proxy, Docker, Netzwerk und Webdienste müssen ein stimmiges System bilden.',
+        approach:
+          'Eine Infrastruktur zu administrieren heißt nicht einfach, Software zu installieren, sondern ihre Wechselwirkungen und Abhängigkeiten zu verstehen.',
+        remark: '',
         visualLines: [
           '# Dienste & Monitoring',
           '→ mail',
@@ -223,271 +215,198 @@ const de: Translations = {
           '→ Backups',
         ],
       },
-      domotique: {
-        status: 'In Produktion',
-        description:
-          'Integration von Smart-Home-Lösungen für Wohn- und Gewerbegebäude (KNX, Home Assistant…).',
-        visualLines: ['# Komfort & Energie', '→ Beleuchtung', '→ Rollläden', '→ Heizung', '→ Szenarien'],
-      },
-      outilsScripts: {
+      outilsAutomatisations: {
         status: 'In Arbeit',
-        description: 'Skripte und Automatisierungswerkzeuge für Zeitgewinn im Alltag.',
-        visualLines: ['# Automatisierung', '→ Backups', '→ Skripte', '→ Bereitstellung', '→ Dokumentation'],
-      },
-      securiteReseaux: {
-        status: 'In Produktion',
+        hook: 'Überflüssige Vorgänge entfernen.',
         description:
-          'Netzwerke, Videoüberwachung, Brandmeldetechnik und Zutrittskontrolle.',
+          'Skripte, Administrationswerkzeuge und Automatisierungen reduzieren wiederkehrende Aufgaben und machen manche Abläufe zuverlässiger.',
+        approach: 'Automatisierung ist aber kein Selbstzweck.',
+        remark:
+          'Wenn das Mittel komplizierter ist als das Problem, sollte man wahrscheinlich das Mittel überdenken.',
         visualLines: [
-          '# Netzwerk & Sicherheit',
-          '→ Videoüberwachung',
-          '→ Zutrittskontrolle',
-          '→ Brandmeldetechnik',
-          '→ Monitoring',
+          '# Automatisierung',
+          '→ Backups',
+          '→ Skripte',
+          '→ Bereitstellung',
+          '→ Dokumentation',
         ],
       },
     },
     cta: {
-      eyebrow: '// eine projektidee?',
-      title: 'Sprechen wir über Ihr Anliegen',
-      text: 'Ich begleite Sie von der Idee bis zur Bereitstellung, mit einfachen, zuverlässigen Lösungen, die zu Ihrer Umgebung passen.',
-      action: 'kontakt aufnehmen',
+      eyebrow: '// was diese projekte gemeinsam haben',
+      title: 'Analysieren. Vereinfachen. Bauen. Testen.',
+      text: 'Diese Methode ist der rote Faden, mehr noch als die verwendeten Technologien.',
+      action: 'Über Ihr Projekt sprechen',
     },
   },
 
   skills: {
     eyebrow: '// meine kompetenzen',
-    title: ['Kompetenzen', 'im Dienst Ihrer', 'Projekte.'],
-    lead: 'Ein technisches und vielseitiges Profil, um zuverlässige, einfache und dauerhafte Lösungen zu entwerfen, bereitzustellen und zu warten.',
-    visualLines: ['# Arbeitsweise', 'plan', 'code', 'test', 'deploy', 'improve'],
-    quote: 'Nützliche Werkzeuge, keine überladenen Lösungen.',
-    filtersLabel: 'Kompetenzen nach Bereich filtern',
-    empty: 'Noch keine Einträge in diesem Bereich.',
-    metrics: {
-      experience: 'jahre erfahrung',
-      projects: 'umgesetzte projekte',
-      passion: 'leidenschaft für praxis & tech',
-    },
+    title: ['Mehrere Schichten', 'eines Problems verstehen.'],
+    lead: [
+      'Eine technische Kompetenz hat erst dann Wert, wenn sie hilft, etwas zu lösen.',
+      'Mein Profil deckt mehrere Ebenen ab, von der Hardware und den Installationen bis zur Software und zur Automatisierung.',
+    ],
+    quote: 'Das ist eine nützliche, zuverlässige und beherrschbare Lösung.',
     domains: {
-      informatique: 'IT',
-      domotique: 'Smart Home',
-      reseaux: 'Netzwerke & Sicherheit',
-      developpement: 'Entwicklung',
-      outils: 'Werkzeuge',
-      soft: 'Soft Skills',
-    },
-    keySkills: {
-      title: 'Kernkompetenzen',
-      subtitle: 'Ein solides und ergänzendes Fundament aus Praxis und IT.',
-      items: {
-        infrastructure: {
-          title: 'Infrastruktur',
-          text: 'Server, Virtualisierung, Docker, Monitoring.',
-        },
-        domotique: {
-          title: 'Smart Home',
-          text: 'KNX, Home Assistant, maßgeschneiderte Integrationen.',
-        },
-        reseaux: {
-          title: 'Netzwerke & Sicherheit',
-          text: 'Netzwerke, Firewall, VPN, Monitoring, Backups.',
-        },
-        developpement: {
-          title: 'Entwicklung',
-          text: 'Python, Bash, JavaScript, Automatisierung, APIs.',
-        },
-        basesDonnees: {
-          title: 'Datenbanken',
-          text: 'PostgreSQL, SQL, Modellierung, Backups.',
-        },
-        support: {
-          title: 'Support & Beratung',
-          text: 'Audit, Installation, Schulung, Unterstützung.',
-        },
+      terrain: {
+        title: 'Praxis',
+        subtitle: 'Schwachstrom · Sicherheit · Detektion · Smart Home',
+        text: 'Erfahrung direkt aus der Arbeit mit technischen Anlagen und ihren realen Anforderungen. Das System muss vor Ort funktionieren, nutzbar und diagnostizierbar sein.',
       },
-    },
-    mastery: {
-      title: 'Kenntnisstufen',
-      subtitle: 'Ein klarer Überblick über meine Fachgebiete.',
-      note: 'Stufen noch anzugeben: bisher keine Zahl bestätigt.',
-      rows: {
-        reseaux: 'Netzwerke / Schwachstrom',
-        linux: 'Linux / Server',
-        domotique: 'Smart Home (KNX / HA)',
-        securite: 'Sicherheit',
-        developpement: 'Entwicklung (Python / JS)',
-        basesDonnees: 'Datenbanken',
-        ia: 'KI & Automatisierung',
+      infrastructure: {
+        title: 'Infrastruktur',
+        subtitle: 'Netzwerke · Linux · Server · Docker',
+        text: 'Systeme entwerfen, administrieren und diagnostizieren, die Dienste am Laufen halten. Das Ziel ist nicht, Komponenten anzuhäufen, sondern eine Infrastruktur zu bauen, die zu ihrem Einsatzzweck passt.',
+      },
+      developpement: {
+        title: 'Entwicklung',
+        subtitle: 'Anwendungen · Skripte · Automatisierung',
+        text: 'Entwickeln, wenn bestehende Werkzeuge einen Bedarf nicht richtig abdecken können. Code ist ein Mittel, um eine Einschränkung aufzuheben, kein Selbstzweck.',
+      },
+      ia: {
+        title: 'KI',
+        subtitle: 'Lokale Modelle · RAG · Integration · Automatisierung',
+        text: 'Die Möglichkeiten der KI ausloten und dabei die Kontrolle über die technische Umgebung behalten. Zu verstehen, was hinter der Oberfläche geschieht, gehört zur Arbeit.',
       },
     },
     technologies: {
-      title: 'Technologien & Werkzeuge',
-      subtitle: 'Die Werkzeuge, die ich täglich nutze.',
-      groups: {
-        systemes: 'systeme',
-        reseaux: 'netzwerke & sicherheit',
-        developpement: 'entwicklung',
-        domotique: 'smart home',
-        basesDonnees: 'datenbanken',
-        ia: 'ki & automatisierung',
-      },
+      title: 'Technologien',
+      subtitle: 'Die Werkzeuge ändern sich. Die Prinzipien bleiben.',
+      note: 'Diese Liste nennt Technologien, die tatsächlich in verschiedenen Projekten eingesetzt werden. Sie ist kein Versprechen, jede davon für jeden Bedarf zu verwenden.',
     },
-    certifications: {
-      title: 'Zertifizierungen & Schulungen',
-      subtitle: 'Ein kontinuierlicher Lernprozess.',
-      note: 'Bezeichnungen und Zeiträume vor der Veröffentlichung zu bestätigen.',
-      items: {
-        linux: { title: 'Linux (Debian)', text: 'Fortgeschrittene Erfahrung' },
-        knx: { title: 'KNX', text: 'Schulung & Praxisprojekte' },
-        securite: { title: 'Netzwerksicherheit', text: 'Kontinuierliche Selbstschulung' },
-        python: { title: 'Python', text: 'Berufliche Projekte' },
-        docker: { title: 'Docker & Container', text: 'Projekte und Bereitstellungen' },
-      },
-    },
+    /** Verweis auf den Beleg: die oben genannten Technologien werden in den Projekten eingesetzt. */
+    projectsLink: 'Projekte ansehen',
     cta: {
-      eyebrow: '// gemeinsam entwickeln',
-      title: 'Ein Projekt? Sprechen wir über Ihre Anforderungen.',
-      text: 'Ich begleite Sie von der Idee bis zur Produktivsetzung, mit passenden und pragmatischen Lösungen.',
-      action: 'kontakt aufnehmen',
+      eyebrow: '// was zählt',
+      title:
+        'Das Problem verstehen. Das richtige Technologieniveau wählen. Etwas Wartbares bauen.',
+      action: 'Über Ihr Projekt sprechen',
     },
   },
 
   about: {
     eyebrow: '// über mich',
-    title: ['Ein Werdegang,', 'eine Leidenschaft,', 'Lösungen.'],
-    lead: 'Als Schwachstromtechniker, Entwickler und Integrator begleite ich Handwerksbetriebe sowie kleine und mittlere Unternehmen bei der Umsetzung zuverlässiger, einfacher und dauerhafter Lösungen, gestützt auf Open Source und Praxiserfahrung.',
-    primaryCta: 'kontakt aufnehmen',
-    cvCta: 'lebenslauf herunterladen',
-    visualLines: [
-      '# roter Faden',
-      'den Bedarf verstehen',
-      'einfach entwerfen',
-      'bereitstellen und dokumentieren',
-      'weitergeben',
-      '# Ideen · Code · Tests · echte Wirkung',
+    title: ['Ein Werdegang zwischen', 'Praxis und Digitalem.'],
+    lead: [
+      'Mein Werdegang folgte nicht einer einzigen Fachrichtung.',
+      'Er hat sich nach und nach um einen einzigen Bedarf entwickelt: zu verstehen, wie Systeme funktionieren und wie man sie zusammenbringt.',
     ],
-    quote: 'Nützliche Werkzeuge, keine überladenen Lösungen.',
-    metrics: {
-      experience: 'jahre erfahrung in praxis & IT',
-      projects: 'umgesetzte projekte (KMU, handwerksbetriebe)',
-      passion: 'leidenschaft & engagement für nützliche lösungen',
-      goal: 'ziel: eine einfachere digitalisierung',
+    primaryCta: 'Über Ihr Projekt sprechen',
+    quote: 'Eine gute Lösung muss verständlich bleiben.',
+    journey: {
+      eyebrow: '// werdegang',
+      title: 'Von der Praxis zur Software',
+      intros: [
+        'Der Schwachstrom hat mir etwas Wesentliches beigebracht:',
+        'Netzwerke und Systeme haben eine weitere Dimension ergänzt:',
+        'Die Entwicklung hat ein weiteres Werkzeug gebracht:',
+        'Automatisierung und KI eröffnen heute eine neue Möglichkeit:',
+      ],
+      lessons: [
+        'eine Lösung muss in der realen Welt funktionieren.',
+        'Komponenten müssen miteinander kommunizieren und administrierbar bleiben.',
+        'was fehlt, lässt sich selbst bauen.',
+        'mehr erreichen, ohne zwangsläufig mehr Komplexität hinzuzufügen.',
+      ],
     },
-    story: {
-      eyebrow: '// meine geschichte',
-      title: 'Ein vielseitiger Werdegang',
-      lead: 'Ich bin in den Bereichen Netzwerke, Sicherheit, Smart Home und Entwicklung tätig. Diese Vielfalt gibt mir einen ganzheitlichen und konkreten Blick auf den Bedarf, von der Praxis bis zur Produktivsetzung.',
-      timeline: {
-        diploma: {
-          title: 'System- und Netzwerkverwaltung',
-          text: 'Ausbildung in Informatik und Netzwerken.',
+    profile: {
+      title: 'Ein hybrides Profil',
+      lead: 'Ich kann dasselbe Problem aus mehreren Ebenen betrachten:',
+      layers: ['Installation', 'Netzwerk', 'System', 'Software', 'Automatisierung'],
+      paragraphs: [
+        'Das heißt nicht, dass man immer auf allen diesen Ebenen eingreifen muss.',
+        'Es heißt, dass man verstehen kann, wo das Problem tatsächlich liegt, bevor man entscheidet, wie man es angeht.',
+      ],
+    },
+    principles: {
+      title: 'Was ich bevorzuge',
+      items: {
+        simplicity: {
+          title: 'Nützliche Einfachheit.',
+          text: 'Eine Lösung ist nicht besser, weil sie mehr Funktionen hat.',
         },
-        technician: {
-          title: 'Schwachstromtechniker',
-          text: 'Netzwerke, Brandschutz, Zutrittskontrolle, Türsprechanlagen, Smart Home.',
+        mastery: {
+          title: 'Beherrschbarkeit.',
+          text: 'Zu verstehen, wie ein System funktioniert, erleichtert Betrieb und Weiterentwicklung.',
         },
-        integrator: {
-          title: 'Integrator & Entwickler',
-          text: 'Maßgeschneiderte Lösungen für Handwerksbetriebe und KMU. Automatisierung, Skripte, interne Werkzeuge.',
+        proportion: {
+          title: 'Angemessenheit.',
+          text: 'Eine kleine Schwierigkeit rechtfertigt nicht unbedingt eine große Architektur.',
         },
-        personal: {
-          title: 'Eigene Projekte & Wissenstransfer',
-          text: 'Versutus-IA, Smart BTP ProGest, Smart Home und Sicherheit.',
+        openness: {
+          title: 'Offenheit.',
+          text: 'Wo es sinnvoll ist, erlauben offene Technologien, bestimmte Abhängigkeiten zu begrenzen und mehr Kontrolle zu behalten.',
         },
       },
     },
-    values: {
-      title: 'Meine Werte',
-      items: [
-        'Einfachheit vor Komplexität',
-        'Konkrete und dauerhafte Lösungen',
-        'Open Source und Unabhängigkeit',
-        'Wissensaustausch',
-        'Zuhören und Begleiten',
-        'Qualität und Zuverlässigkeit',
-        'Kontinuierliche Verbesserung',
-      ],
-    },
-    motivation: {
-      title: 'Was mich antreibt',
-      paragraphs: [
-        'Professionellen helfen, Zeit zu sparen, ihre Anlagen zu sichern und ihren Alltag zu vereinfachen, gestützt auf offene und bewährte Technologien.',
-        'Ich glaube an eine schlanke, nützliche und beherrschte Digitalisierung im Dienst der Praxis.',
-      ],
-      quote: 'Die besten Lösungen sind die, die hinter dem Nutzen verschwinden.',
-    },
-    wideVisualLines: [
-      '# lernen · teilen · aufbauen',
-      'linux',
-      'netzwerke',
-      'smart home',
-      'sicherheit',
-      'python',
-      'open source',
-    ],
     cta: {
-      eyebrow: '// und jetzt?',
-      title: 'Ein Projekt? Sprechen wir darüber.',
-      text: 'Ob für eine Beratung, eine Integration oder die Entwicklung einer maßgeschneiderten Lösung, ich bin für Sie da.',
-      action: 'kontakt aufnehmen',
+      eyebrow: '// fazit',
+      title: 'Lösungen bauen, die man auch morgen noch versteht.',
+      text: 'Das ist wahrscheinlich das beste Kriterium für eine technische Lösung. Nicht die Zahl ihrer Funktionen. Nicht die Neuheit ihrer Technologie. Sondern ihre Fähigkeit, auf Dauer nützlich, zuverlässig und beherrschbar zu bleiben.',
+      action: 'Über Ihr Projekt sprechen',
     },
   },
 
   contact: {
     eyebrow: '// kontakt',
-    title: ['Sprechen wir', 'über Ihr Projekt.'],
-    lead: 'Eine Idee, ein Bedarf, eine Frage? Ich bin für Sie da, um über Ihre Projekte zu sprechen und gemeinsam konkrete, einfache Lösungen zu finden, die zu Ihrer Umgebung passen.',
-    highlights: {
-      response: { title: 'Schnelle Antwort', text: 'Reaktionszeit noch anzugeben' },
-      exchange: { title: 'Unverbindlicher Austausch', text: '' },
-      confidential: { title: 'Vertraulich und sicher', text: '' },
-    },
-    visualLines: [
-      '# entwerfen · bereitstellen · vereinfachen',
-      'den Bedarf verstehen',
-      'eine klare Lösung vorschlagen',
-      'ohne Überraschungen kalkulieren',
-      'bereitstellen und dokumentieren',
-      'verfügbar bleiben',
+    title: ['Sie haben ein technisches Problem?', 'Verstehen wir es zuerst.'],
+    lead: ['Sie müssen die Lösung nicht kennen, bevor Sie Kontakt aufnehmen.'],
+    listLead: 'Beschreiben Sie einfach:',
+    list: [
+      'was nicht funktioniert',
+      'was Sie verbessern möchten',
+      'was Sie aufbauen möchten',
+      'oder einfach das, was Sie verstehen möchten.',
     ],
-    form: {
-      title: 'Senden Sie mir eine Nachricht',
-      subtitle: 'Ich antworte Ihnen so schnell wie möglich.',
-      requiredMark: '*',
-      optionalMark: '(optional)',
-      fields: {
-        name: 'Name',
-        email: 'E-Mail',
-        company: 'Unternehmen',
-        subject: 'Betreff',
-        message: 'Ihre Nachricht',
+    expectations: {
+      title: 'Was Sie erwarten können',
+      items: {
+        noPaste: {
+          title: 'Keine aufgesetzte Lösung.',
+          text: 'Ausgangspunkt sind der reale Kontext und das Bestehende.',
+        },
+        noFreeComplexity: {
+          title: 'Keine unnötige Komplexität.',
+          text: 'Jede Komponente muss einen Grund haben, zu existieren.',
+        },
+        explainedChoices: {
+          title: 'Erklärte Entscheidungen.',
+          text: 'Eine technische Lösung muss verständlich und begründbar sein.',
+        },
+        proportionate: {
+          title: 'Eine angemessene Antwort.',
+          text: 'Das richtige Technologieniveau richtet sich nach dem Problem, nicht umgekehrt.',
+        },
       },
+    },
+    form: {
+      title: 'Mein Anliegen beschreiben',
+      requiredMark: '*',
+      fields: {
+        name: 'Ihr Name',
+        email: 'Ihre E-Mail-Adresse',
+        subject: 'Betreff',
+        message: 'Beschreiben Sie Ihr Anliegen',
+      },
+      messagePlaceholder: 'Ein paar Zeilen genügen für den Anfang.',
       subjectPlaceholder: 'Betreff auswählen',
-      subjects: ['Infrastruktur', 'Smart Home', 'Netzwerke & Sicherheit', 'Entwicklung', 'Sonstiges'],
+      subjects: [
+        'Praxis / Schwachstrom',
+        'Infrastruktur / Netzwerke',
+        'Automatisierung & Smart Home',
+        'Entwicklung & KI',
+        'Sonstiges',
+      ],
       submit: 'Nachricht senden',
       notice:
         'Versand deaktiviert: Derzeit ist kein Versanddienst verbunden. Das Formular ist bereit zum Anbinden.',
     },
-    methods: {
-      title: 'Weitere Kontaktmöglichkeiten',
-      subtitle: 'Wählen Sie den Kanal, der Ihnen passt.',
-      items: {
-        email: { title: 'E-Mail', value: 'Adresse noch anzugeben' },
-        phone: { title: 'Telefon', value: 'Nummer noch anzugeben' },
-        location: { title: 'Standort', value: 'noch anzugeben' },
-      },
-    },
-    zone: {
-      title: 'Einsatzgebiet',
-      subtitle: 'Vor Ort oder aus der Ferne.',
-      items: ['Geografisches Gebiet noch anzugeben', 'Fernwartung', 'Remote-Projekte'],
-      badge: 'Lokale Lösungen für eine nachhaltige Wirkung.',
-    },
     cta: {
-      eyebrow: '// ein projekt im kopf?',
-      title: 'Machen wir aus Ihren Ideen konkrete Lösungen.',
-      text: 'Ob Beratung, Installation, Entwicklung oder Zusammenarbeit, sprechen wir einfach darüber.',
-      note: 'Bis bald!',
+      eyebrow: '// fazit',
+      title: 'Der erste Schritt ist, den Bedarf zu verstehen.',
+      text: 'Es ist nicht nötig, die Lösung schon genau festgelegt zu haben.',
+      note: 'Eine Idee, ein Problem, ein Projekt?',
     },
   },
 };

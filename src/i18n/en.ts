@@ -1,10 +1,15 @@
 import type { Translations } from './fr';
 
-/** Textes anglais. */
+/**
+ * English texts.
+ * Mirrors the structure of `fr.ts` (source of truth) exactly:
+ * `const en: Translations = { ... }` fails to compile on any mismatch.
+ */
 const en: Translations = {
   meta: {
     title: 'Operius',
-    description: 'Operius — projects, skills and contact.',
+    description:
+      'Operius — technical solutions from the field to software: networks, infrastructure, automation, development and AI.',
   },
 
   a11y: {
@@ -16,6 +21,7 @@ const en: Translations = {
     languageGroup: 'Language selection',
   },
 
+  /** Window command menu (⋯ button). */
   window: {
     trigger: 'Window commands',
     groups: {
@@ -57,7 +63,7 @@ const en: Translations = {
   },
 
   footer: {
-    legal: 'Open solutions for a simpler world.',
+    legal: 'Useful, reliable and manageable solutions.',
     links: {
       github: 'github',
       linkedin: 'linkedin',
@@ -67,15 +73,12 @@ const en: Translations = {
 
   common: {
     contactCta: 'contact me',
-    pendingValue: '—',
-    pendingPeriod: 'period to be specified',
     linkPending: 'Link to be defined',
-    documentPending: 'Document to be provided',
     all: 'All',
-    overview: 'Overview',
     copy: 'copy',
   },
 
+  /** Alt texts for the photo visuals (see `src/content/visuals.ts`). */
   visuals: {
     alt: {
       projectsHero: 'Technical workspace: code screens, plant and mug',
@@ -84,111 +87,98 @@ const en: Translations = {
       aboutWorkshop: 'Workshop: tool board, technical books, notes screen and mug',
       contactHero: 'Workspace: laptop, mug and notebook',
       projectCockpitServers: 'Supervised server racks',
-      projectDomotique: 'Wall-mounted home automation tablet controlling home equipment',
-      projectSecuriteReseaux: 'Video surveillance camera on a facade',
     },
   },
 
   home: {
-    eyebrow: '// concrete solutions for your projects',
-    title: ['Technician.', 'Developer.', 'Integrator.'],
-    lead: 'I help craftspeople, small businesses and SMEs set up reliable, simple, open-source solutions: networks, home automation, security, fire detection, AI and web applications.',
-    primaryCta: 'see my projects',
-    secondaryCta: 'contact me',
-    visualLines: [
-      '# Concrete needs',
-      'study how it is used',
-      'design solutions',
-      'deploy properly',
-      'support over time',
-      'share knowledge',
-      'stay open-source',
+    eyebrow: '// my approach',
+    title: ['Not more technology.', 'The right technology.'],
+    lead: [
+      'I design and integrate technical solutions that answer concrete problems — from the field all the way to software.',
+      'Networks, security, low voltage, home automation, automation, development and AI: I first seek to understand the need, then choose the simplest solution that can genuinely answer it.',
     ],
-    quote: 'Useful tools, not overblown machinery.',
+    primaryCta: 'See the projects',
+    secondaryCta: 'Talk about your needs',
+    /** Method shown in the hero panel: the four steps of the V3 copy. */
+    visualLines: ['understand', 'simplify', 'build', 'test'],
+    quote: 'Understand the problem before choosing the technology.',
     domains: {
       infrastructure: {
         title: 'Infrastructure',
-        text: 'Networks, fibre, security, servers and monitoring.',
+        hook: 'Keep the systems everything else rests on running.',
+        text: 'Networks, servers, Linux, services and infrastructure: building a reliable, consistent and maintainable foundation.',
       },
-      domotique: {
-        title: 'Home automation',
-        text: 'Connected solutions for homes and commercial buildings.',
+      securite: {
+        title: 'Security & low voltage',
+        hook: 'Connect the technical work to real-world conditions.',
+        text: 'Detection, security, low voltage and technical systems: integrating equipment that must work under real conditions.',
+      },
+      automatisation: {
+        title: 'Automation & home automation',
+        hook: 'Let systems do whatever can be done automatically.',
+        text: 'Monitoring, automation and home automation to reduce repetitive operations and improve control.',
       },
       developpement: {
-        title: 'Development',
-        text: 'Web applications, automation, AI.',
-      },
-      support: {
-        title: 'Support & Advice',
-        text: 'Audit, installation, training, assistance.',
+        title: 'Development & AI',
+        hook: 'Build when existing tools do not answer the need.',
+        text: 'Applications, scripts, tools and AI solutions when development provides a better answer than stacking existing software.',
       },
     },
     domainLink: 'learn more',
-    profile: {
-      eyebrow: '// skills',
-      title: 'A versatile profile',
-      lead: 'A mix of field work and IT for complete, pragmatic solutions.',
-      checks: [
-        'Low voltage & networks',
-        'Fire detection',
-        'Home automation',
-        'Linux & servers',
-        'Docker & virtualisation',
-        'Programming (Python, JS)',
-        'Databases',
-        'Local AI & RAG',
-        'Supervision & monitoring',
-        'Open-source',
-      ],
-      cvCta: 'see my CV',
-      tabs: {
-        experience: 'experience',
-        projects: 'projects',
-        tools: 'tools',
-      },
-      experienceTitle: 'years of experience',
-      experienceNote: 'values to be specified (no validated figures)',
-      experienceRows: [
-        'Networks / Low voltage',
-        'Home automation',
-        'Development',
-        'Linux / Servers',
-        'AI & automation',
-      ],
-      projectsTitle: 'projects in progress and in production',
-      toolsTitle: 'technologies & tools',
-      toolsMore: 'see all technologies',
+    approach: {
+      eyebrow: '// why this approach?',
+      title: 'Because a problem does not always need more technology.',
+      lead: 'A system can be technically sophisticated and yet hard to use, maintain or evolve.',
+      stepsLead: 'I favour a different approach:',
+      steps: ['Understand', 'Simplify', 'Build', 'Test'],
+      closingLead: 'The goal is not the most impressive solution.',
+      closing: 'It is a useful, reliable and manageable one.',
     },
-    mission: {
-      eyebrow: '// my mission',
-      title: 'Technology that serves the field',
-      text: 'Helping professionals save time, secure their installations and simplify their daily work, with reliable and durable solutions.',
-      action: 'let’s discuss your project',
+    journey: {
+      title: 'From the field to software',
+      lead: 'My background brings together several areas that are usually handled separately:',
+      steps: ['Low voltage', 'Networks', 'Systems', 'Development', 'Automation', 'AI'],
+      closing:
+        'This continuity makes it possible to approach a problem at several levels and to understand how the different layers interact.',
+    },
+    conviction: {
+      eyebrow: '// a conviction',
+      title: 'A good solution must remain understandable.',
+      text: 'When relevant, I favour open technologies and solutions that can be administered, diagnosed and evolved without needlessly depending on a black box. Tools are a means. The result is what matters.',
+      action: 'Talk about your project',
     },
   },
 
   projects: {
     eyebrow: '// my projects',
-    title: ['Concrete projects', 'for real needs.'],
-    lead: 'Open-source, pragmatic and documented solutions for craftspeople, small businesses and technical environments.',
+    title: ['Concrete problems.', 'Solutions built to answer them.'],
+    lead: [
+      'The projects presented here are not a collection of technologies.',
+      'They show a way of working: start from a need, understand the constraints, build a solution and verify that it truly works.',
+    ],
     heroVisualLines: ['# ideas', 'design', 'development', 'deployment', 'maintenance'],
     filtersLabel: 'Filter projects by category',
     linkLabel: 'view project',
     repositoryLabel: 'GitHub',
-    pendingNote: 'Project and repository links will be enabled once the URLs are validated.',
+    approachLabel: 'Approach',
+    technologiesLabel: 'Technologies',
+    pendingNote:
+      'Project and repository links will be enabled once the URLs are validated.',
     empty: 'No project in this category yet.',
     categories: {
       infrastructure: 'Infrastructure',
-      ia: 'AI & Automation',
+      ia: 'AI & automation',
       developpement: 'Development',
-      domotique: 'Home automation',
-      securite: 'Security',
     },
     items: {
       smartBtpProgest: {
         status: 'In development',
+        hook: 'Simplify management without building overblown machinery.',
         description:
-          'Project management SaaS for construction craftspeople and SMEs: planning, tracking, budget, collaboration.',
+          'Craftspeople and small businesses need tools suited to their activity, not necessarily general-purpose platforms overloaded with features. Smart BTP ProGest explores an approach centred on the project, planning, tasks, documents and tracking.',
+        approach:
+          'Build only the functions that are useful day to day and keep an architecture simple enough to evolve.',
+        remark: '',
         visualLines: [
           '# construction project management',
           '→ planning',
@@ -199,7 +189,12 @@ const en: Translations = {
       },
       versutusIa: {
         status: 'In production',
-        description: 'Local AI platform: LLM, RAG, tools, web interfaces and agents. Open-source.',
+        hook: 'Understand AI rather than simply using it.',
+        description:
+          'Versutus IA explores a local AI infrastructure able to bring together models, APIs, RAG, memory and tools. The goal is to master the whole chain: installation, execution, integration, measurement and diagnosis.',
+        approach:
+          'Favour reproducible experimentation and an understanding of how it works rather than the use of an opaque solution.',
+        remark: '',
         visualLines: [
           '# local · private · useful AI',
           '→ switch model',
@@ -210,7 +205,13 @@ const en: Translations = {
       },
       cockpitServers: {
         status: 'In production',
-        description: 'Server infrastructure: mail, DNS, reverse proxy, backups and monitoring.',
+        hook: 'An infrastructure is only reliable when its components work together.',
+        description:
+          'DNS, mail, certificates, reverse proxy, Docker, network and web services must form a coherent system.',
+        // Descriptive phrasing taken from the source text: the method already stated in its next sentence.
+        approach:
+          'Administering an infrastructure does not simply mean installing software, but understanding their interactions and dependencies.',
+        remark: '',
         visualLines: [
           '# services & monitoring',
           '→ mail',
@@ -219,270 +220,199 @@ const en: Translations = {
           '→ backups',
         ],
       },
-      domotique: {
-        status: 'In production',
-        description:
-          'Integration of home automation solutions for homes and commercial buildings (KNX, Home Assistant…).',
-        visualLines: ['# comfort & energy', '→ lighting', '→ blinds', '→ heating', '→ scenes'],
-      },
-      outilsScripts: {
+      outilsAutomatisations: {
         status: 'In progress',
-        description: 'Scripts and automation tools to save time every day.',
-        visualLines: ['# automation', '→ backups', '→ scripts', '→ deployment', '→ documentation'],
-      },
-      securiteReseaux: {
-        status: 'In production',
-        description: 'Networks, video surveillance, fire detection and access control.',
+        hook: 'Eliminate unnecessary operations.',
+        description:
+          'Scripts, administration tools and automations help reduce repetitive tasks and make some procedures more reliable.',
+        // Descriptive phrasing taken from the source text: the limitation already stated in its next sentence.
+        approach: 'Automation is not an end in itself.',
+        remark:
+          'If the cure is more complex than the problem, the cure probably needs rethinking.',
         visualLines: [
-          '# network & security',
-          '→ video surveillance',
-          '→ access control',
-          '→ fire detection',
-          '→ monitoring',
+          '# automation',
+          '→ backups',
+          '→ scripts',
+          '→ deployment',
+          '→ documentation',
         ],
       },
     },
     cta: {
-      eyebrow: '// a project idea?',
-      title: 'Let’s discuss your needs',
-      text: 'I support you from the idea to deployment, with simple, reliable solutions suited to your environment.',
-      action: 'contact me',
+      eyebrow: '// what these projects have in common',
+      title: 'Analyse. Simplify. Build. Test.',
+      text: 'It is this method, more than the technologies used, that forms the common thread.',
+      action: 'Talk about your project',
     },
   },
 
   skills: {
     eyebrow: '// my skills',
-    title: ['Skills that serve', 'your projects.'],
-    lead: 'A technical and versatile profile to design, deploy and maintain reliable, simple and durable solutions.',
-    visualLines: ['# working method', 'plan', 'code', 'test', 'deploy', 'improve'],
-    quote: 'Useful tools, not overblown machinery.',
-    filtersLabel: 'Filter skills by area',
-    empty: 'No item in this area yet.',
-    metrics: {
-      experience: 'years of experience',
-      projects: 'projects delivered',
-      passion: 'field & tech passion',
-    },
+    title: ['Understanding several layers', 'of the same problem.'],
+    lead: [
+      'A technical skill only has value when it makes it possible to solve something.',
+      'My profile covers several levels, from hardware and installations to software and automation.',
+    ],
+    quote: 'It is a useful, reliable and manageable one.',
     domains: {
-      informatique: 'IT',
-      domotique: 'Home automation',
-      reseaux: 'Networks & Security',
-      developpement: 'Development',
-      outils: 'Tools',
-      soft: 'Soft skills',
-    },
-    keySkills: {
-      title: 'Core skills',
-      subtitle: 'A solid, complementary foundation, field and IT.',
-      items: {
-        infrastructure: {
-          title: 'Infrastructure',
-          text: 'Servers, virtualisation, Docker, monitoring.',
-        },
-        domotique: {
-          title: 'Home automation',
-          text: 'KNX, Home Assistant, custom integrations.',
-        },
-        reseaux: {
-          title: 'Networks & Security',
-          text: 'Networks, firewall, VPN, monitoring, backups.',
-        },
-        developpement: {
-          title: 'Development',
-          text: 'Python, Bash, JavaScript, automation, APIs.',
-        },
-        basesDonnees: {
-          title: 'Databases',
-          text: 'PostgreSQL, SQL, modelling, backups.',
-        },
-        support: {
-          title: 'Support & Advice',
-          text: 'Audit, installation, training, assistance.',
-        },
+      terrain: {
+        title: 'Field',
+        subtitle: 'Low voltage · Security · Detection · Home automation',
+        text: 'Experience directly linked to technical installations and their real constraints. The system must work in the field, be operable and be diagnosable.',
       },
-    },
-    mastery: {
-      title: 'Skill levels',
-      subtitle: 'A clear view of my areas of expertise.',
-      note: 'Levels to be filled in: no validated figures yet.',
-      rows: {
-        reseaux: 'Networks / Low voltage',
-        linux: 'Linux / Servers',
-        domotique: 'Home automation (KNX / HA)',
-        securite: 'Security',
-        developpement: 'Development (Python / JS)',
-        basesDonnees: 'Databases',
-        ia: 'AI & Automation',
+      infrastructure: {
+        title: 'Infrastructure',
+        subtitle: 'Networks · Linux · Servers · Docker',
+        text: 'Design, administer and diagnose the systems that keep services running. The goal is not to accumulate components, but to build an infrastructure consistent with its use.',
+      },
+      developpement: {
+        title: 'Development',
+        subtitle: 'Applications · Scripts · Automation',
+        text: 'Build when a need cannot be properly covered by existing tools. Code is a way to remove a limitation, not an end in itself.',
+      },
+      ia: {
+        title: 'AI',
+        subtitle: 'Local models · RAG · Integration · Automation',
+        text: 'Explore the possibilities of AI while keeping control of the technical environment. Understanding what happens behind the interface is part of the work.',
       },
     },
     technologies: {
-      title: 'Technologies & tools',
-      subtitle: 'The tools I use every day.',
-      groups: {
-        systemes: 'systems',
-        reseaux: 'networks & security',
-        developpement: 'development',
-        domotique: 'home automation',
-        basesDonnees: 'databases',
-        ia: 'ai & automation',
-      },
+      title: 'Technologies',
+      subtitle: 'Tools change. Principles remain.',
+      note: 'This list shows technologies genuinely used across different projects. It is not a promise to use each of them for every need.',
     },
-    certifications: {
-      title: 'Certifications & training',
-      subtitle: 'A continuous learning approach.',
-      note: 'Titles and periods to be confirmed before publication.',
-      items: {
-        linux: { title: 'Linux (Debian)', text: 'Advanced experience' },
-        knx: { title: 'KNX', text: 'Training & field projects' },
-        securite: { title: 'Network security', text: 'Continuous self-training' },
-        python: { title: 'Python', text: 'Professional projects' },
-        docker: { title: 'Docker & containers', text: 'Projects and deployments' },
-      },
-    },
+    /** Pointer to the proof: the technologies listed above are used in the projects. */
+    projectsLink: 'See the projects',
     cta: {
-      eyebrow: '// building together',
-      title: 'A project? Let’s discuss your needs.',
-      text: 'I support you from the idea to production, with suitable and pragmatic solutions.',
-      action: 'contact me',
+      eyebrow: '// what matters',
+      title:
+        'Understand the problem. Choose the right level of technology. Build something maintainable.',
+      action: 'Talk about your project',
     },
   },
 
   about: {
     eyebrow: '// about',
-    title: ['A journey,', 'a passion,', 'solutions.'],
-    lead: 'Low-voltage technician, developer and integrator, I help craftspeople, small businesses and SMEs set up reliable, simple and durable solutions, relying on open-source and field experience.',
-    primaryCta: 'contact me',
-    cvCta: 'download my CV',
-    visualLines: [
-      '# common thread',
-      'understand the need',
-      'design simply',
-      'deploy and document',
-      'pass it on',
-      '# ideas · code · tests · real impact',
+    title: ['A path built', 'between the field and digital.'],
+    lead: [
+      'My path has not followed a single speciality.',
+      'It was built gradually around a single need: understanding how systems work and how to make them work together.',
     ],
-    quote: 'Useful tools, not overblown machinery.',
-    metrics: {
-      experience: 'years of field & IT experience',
-      projects: 'projects delivered (small businesses, SMEs, craftspeople)',
-      passion: 'passion & commitment for useful solutions',
-      goal: 'goal: a simpler digital world',
+    primaryCta: 'Talk about your project',
+    quote: 'A good solution must remain understandable.',
+    journey: {
+      eyebrow: '// journey',
+      title: 'From the field to software',
+      intros: [
+        'Low voltage taught me one essential thing:',
+        'Networks and systems added another dimension:',
+        'Development brought another tool:',
+        'Automation and AI now open a new possibility:',
+      ],
+      lessons: [
+        'a solution must work in the real world.',
+        'components must communicate and remain manageable.',
+        'when something is missing, it can be built.',
+        'do more without necessarily adding more complexity.',
+      ],
     },
-    story: {
-      eyebrow: '// my story',
-      title: 'A versatile path',
-      lead: 'I work across networks, security, home automation and development. This variety gives me a global and concrete view of needs, from the field to production.',
-      timeline: {
-        diploma: {
-          title: 'Systems and network management',
-          text: 'Training in IT and networks.',
+    profile: {
+      title: 'A hybrid profile',
+      lead: 'I can look at the same problem from several levels:',
+      layers: ['Installation', 'Network', 'System', 'Software', 'Automation'],
+      paragraphs: [
+        'This does not mean always working on every one of these layers.',
+        'It means it is possible to understand where the problem really lies before choosing how to handle it.',
+      ],
+    },
+    principles: {
+      title: 'What I favour',
+      items: {
+        simplicity: {
+          title: 'Useful simplicity.',
+          text: 'A solution is not better because it has more features.',
         },
-        technician: {
-          title: 'Low-voltage technician',
-          text: 'Networks, fire safety, access control, door entry systems, home automation.',
+        mastery: {
+          title: 'Mastery.',
+          text: 'Understanding how a system works makes it easier to operate and evolve.',
         },
-        integrator: {
-          title: 'Integrator & developer',
-          text: 'Custom solutions for craftspeople and SMEs. Automation, scripts, internal tools.',
+        proportion: {
+          title: 'Proportion.',
+          text: 'A small difficulty does not necessarily justify a large architecture.',
         },
-        personal: {
-          title: 'Personal projects & sharing',
-          text: 'Versutus-IA, Smart BTP ProGest, home automation and security.',
+        openness: {
+          title: 'Openness.',
+          text: 'When relevant, open technologies make it possible to limit certain dependencies and keep more control.',
         },
       },
     },
-    values: {
-      title: 'My values',
-      items: [
-        'Simplicity before complexity',
-        'Concrete and durable solutions',
-        'Open-source and independence',
-        'Sharing knowledge',
-        'Listening and support',
-        'Quality and reliability',
-        'Continuous improvement',
-      ],
-    },
-    motivation: {
-      title: 'What drives me',
-      paragraphs: [
-        'Helping professionals save time, secure their installations and simplify their daily work, relying on open and proven technologies.',
-        'I believe in a sober, useful and controlled digital world, serving the field.',
-      ],
-      quote: 'The best solutions are the ones that disappear behind the use.',
-    },
-    wideVisualLines: [
-      '# learn · share · build',
-      'linux',
-      'networks',
-      'home automation',
-      'security',
-      'python',
-      'open source',
-    ],
     cta: {
-      eyebrow: '// and now?',
-      title: 'A project? Let’s talk about it.',
-      text: 'Whether for advice, an integration or the development of a custom solution, I am here to listen.',
-      action: 'contact me',
+      eyebrow: '// conclusion',
+      title: 'Build solutions that can still be understood tomorrow.',
+      text: 'This is probably the best criterion for judging a technical solution. Not the number of features. Not the novelty of its technology. Its ability to remain useful, reliable and manageable over time.',
+      action: 'Talk about your project',
     },
   },
 
   contact: {
     eyebrow: '// contact',
-    title: ['Let’s discuss', 'your project.'],
-    lead: 'An idea, a need, a question? I am here to talk about your projects and find concrete, simple solutions suited to your environment.',
-    highlights: {
-      response: { title: 'Quick reply', text: 'delay to be specified' },
-      exchange: { title: 'No-commitment exchange', text: '' },
-      confidential: { title: 'Confidential and secure', text: '' },
-    },
-    visualLines: [
-      '# design · deploy · simplify',
-      'understand the need',
-      'propose a clear solution',
-      'quote without surprises',
-      'deploy and document',
-      'stay available',
+    title: ['You have a technical problem?', "Let's start by understanding it."],
+    lead: ['You do not need to know the solution before getting in touch.'],
+    listLead: 'Simply explain:',
+    list: [
+      'what is not working',
+      'what you would like to improve',
+      'what you want to build',
+      'or simply what you are trying to understand.',
     ],
-    form: {
-      title: 'Send me a message',
-      subtitle: 'I will reply as soon as possible.',
-      requiredMark: '*',
-      optionalMark: '(optional)',
-      fields: {
-        name: 'Name',
-        email: 'Email',
-        company: 'Company',
-        subject: 'Subject',
-        message: 'Your message',
+    expectations: {
+      title: 'What you can expect',
+      items: {
+        noPaste: {
+          title: 'No off-the-shelf solution.',
+          text: 'We start from the real context and what already exists.',
+        },
+        noFreeComplexity: {
+          title: 'No needless complexity.',
+          text: 'Every component must have a reason to exist.',
+        },
+        explainedChoices: {
+          title: 'Explained choices.',
+          text: 'A technical solution must be understandable and justifiable.',
+        },
+        proportionate: {
+          title: 'A proportionate answer.',
+          text: 'The right level of technology depends on the problem, not the other way round.',
+        },
       },
+    },
+    form: {
+      title: 'Describe my need',
+      requiredMark: '*',
+      fields: {
+        name: 'Your name',
+        email: 'Your email address',
+        subject: 'Subject',
+        message: 'Describe your need',
+      },
+      messagePlaceholder: 'A few lines are enough to get started.',
       subjectPlaceholder: 'Choose a subject',
-      subjects: ['Infrastructure', 'Home automation', 'Networks & security', 'Development', 'Other'],
+      subjects: [
+        'Field / low voltage',
+        'Infrastructure / networks',
+        'Automation & home automation',
+        'Development & AI',
+        'Other',
+      ],
       submit: 'Send message',
       notice:
         'Sending disabled: no sending service is connected yet. The form is ready to be wired up.',
     },
-    methods: {
-      title: 'Other ways to reach me',
-      subtitle: 'Choose the channel that suits you.',
-      items: {
-        email: { title: 'Email', value: 'address to be filled in' },
-        phone: { title: 'Phone', value: 'number to be filled in' },
-        location: { title: 'Location', value: 'to be specified' },
-      },
-    },
-    zone: {
-      title: 'Service area',
-      subtitle: 'On site or remotely.',
-      items: ['Geographic area to be specified', 'Remote maintenance', 'Remote projects'],
-      badge: 'Local solutions, for a lasting impact.',
-    },
     cta: {
-      eyebrow: '// a project in mind?',
-      title: 'Let’s turn your ideas into concrete solutions.',
-      text: 'Whether for advice, an installation, a development or a collaboration, let’s simply talk about it.',
-      note: 'See you soon!',
+      eyebrow: '// conclusion',
+      title: 'The first task is to understand the need.',
+      text: 'There is no need to have already defined the solution precisely.',
+      note: 'An idea, a problem, a project?',
     },
   },
 };
