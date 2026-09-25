@@ -7,34 +7,30 @@ import {
   type Language,
 } from '../i18n';
 
-/**
- * Sélecteur de langue du shell.
- *
- * Volontairement NON monté pendant la passe de fidélité visuelle desktop (la référence
- * `docs/design/home.png` n'affiche aucun sélecteur) : voir `src/App.tsx` et `src/i18n/index.ts`.
- * Les cinq langues restent disponibles ; remonter ce composant rétablit la sélection.
- */
+/** Sélecteur compact de langue du shell. */
 export default function LanguageSwitcher() {
   const { t, i18n } = useTranslation();
-
   const resolved = i18n.resolvedLanguage ?? i18n.language;
   const current: Language = isLanguage(resolved) ? resolved : 'fr';
 
   return (
-    <div className="language-switcher" role="group" aria-label={t('a11y.languageGroup')}>
-      {SUPPORTED_LANGUAGES.map((language) => (
-        <button
-          key={language}
-          type="button"
-          className="language-switcher__button"
-          lang={language}
-          aria-pressed={language === current}
-          aria-label={`${language.toUpperCase()} — ${LANGUAGE_NAMES[language]}`}
-          onClick={() => changeLanguage(language)}
-        >
-          {language.toUpperCase()}
-        </button>
-      ))}
+    <div className="language-switcher">
+      <select
+        className="language-switcher__select"
+        value={current}
+        lang={current}
+        aria-label={t('a11y.languageGroup')}
+        onChange={(event) => {
+          const next = event.target.value;
+          if (isLanguage(next)) changeLanguage(next);
+        }}
+      >
+        {SUPPORTED_LANGUAGES.map((language) => (
+          <option key={language} value={language} lang={language}>
+            {language.toUpperCase()} — {LANGUAGE_NAMES[language]}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
