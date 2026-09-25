@@ -1,8 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import './i18n';
 import './styles/global.css';
 import './styles/shell.css';
+import './styles/components.css';
 import './styles/sections.css';
 
 createRoot(document.getElementById('root')!).render(

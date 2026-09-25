@@ -1,10 +1,12 @@
 import { useEffect, useId, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ZOOM_STEPS: readonly number[] = [0.8, 0.9, 1, 1.1, 1.25, 1.5];
 const DEFAULT_ZOOM_INDEX = ZOOM_STEPS.indexOf(1);
 const BASE_FONT_SIZE = 16;
 
 export default function WindowMenu() {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [zoomIndex, setZoomIndex] = useState(DEFAULT_ZOOM_INDEX);
   const [status, setStatus] = useState('');
@@ -81,7 +83,7 @@ export default function WindowMenu() {
       }
       setStatus('');
     } catch {
-      setStatus('Plein écran refusé par le navigateur.');
+      setStatus(t('window.status.fullscreenRefused'));
     }
   };
 
@@ -93,9 +95,9 @@ export default function WindowMenu() {
   const copyLink = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
-      setStatus('Lien de la page copié.');
+      setStatus(t('window.status.linkCopied'));
     } catch {
-      setStatus('Copie impossible : autorisation refusée.');
+      setStatus(t('window.status.copyFailed'));
     }
   };
 
@@ -105,7 +107,7 @@ export default function WindowMenu() {
         type="button"
         ref={triggerRef}
         className="window-menu__trigger"
-        aria-label="Commandes de fenêtre"
+        aria-label={t('window.trigger')}
         aria-expanded={isOpen}
         aria-controls={panelId}
         onClick={toggleMenu}
@@ -115,23 +117,27 @@ export default function WindowMenu() {
 
       {isOpen && (
         <div className="window-menu__panel" id={panelId} ref={panelRef}>
-          <p className="window-menu__group-label">Fenêtre</p>
+          <p className="window-menu__group-label">{t('window.groups.window')}</p>
           <button
             type="button"
             className="window-menu__item"
             onClick={toggleFullscreen}
             disabled={!canUseFullscreen}
           >
-            <span>{isFullscreen ? 'Quitter le plein écran' : 'Plein écran'}</span>
-            {!canUseFullscreen && <span className="window-menu__value">indisponible</span>}
+            <span>
+              {isFullscreen ? t('window.items.exitFullscreen') : t('window.items.fullscreen')}
+            </span>
+            {!canUseFullscreen && (
+              <span className="window-menu__value">{t('window.items.unavailable')}</span>
+            )}
           </button>
           <button type="button" className="window-menu__item" onClick={printPage}>
-            Imprimer la page
+            {t('window.items.print')}
           </button>
 
-          <p className="window-menu__group-label">Affichage</p>
+          <p className="window-menu__group-label">{t('window.groups.display')}</p>
           <div className="window-menu__meter">
-            <span>Zoom</span>
+            <span>{t('window.items.zoom')}</span>
             <span className="window-menu__value">{Math.round(zoom * 100)} %</span>
           </div>
           <button
@@ -140,7 +146,7 @@ export default function WindowMenu() {
             onClick={() => setZoomIndex((index) => Math.max(0, index - 1))}
             disabled={zoomIndex === 0}
           >
-            Zoom arrière
+            {t('window.items.zoomOut')}
           </button>
           <button
             type="button"
@@ -148,7 +154,7 @@ export default function WindowMenu() {
             onClick={() => setZoomIndex((index) => Math.min(ZOOM_STEPS.length - 1, index + 1))}
             disabled={zoomIndex === ZOOM_STEPS.length - 1}
           >
-            Zoom avant
+            {t('window.items.zoomIn')}
           </button>
           <button
             type="button"
@@ -156,18 +162,18 @@ export default function WindowMenu() {
             onClick={() => setZoomIndex(DEFAULT_ZOOM_INDEX)}
             disabled={zoomIndex === DEFAULT_ZOOM_INDEX}
           >
-            Taille réelle
+            {t('window.items.zoomReset')}
           </button>
 
-          <p className="window-menu__group-label">Partage</p>
+          <p className="window-menu__group-label">{t('window.groups.share')}</p>
           <button
             type="button"
             className="window-menu__item"
             onClick={copyLink}
             disabled={!canCopy}
           >
-            <span>Copier le lien</span>
-            {!canCopy && <span className="window-menu__value">indisponible</span>}
+            <span>{t('window.items.copyLink')}</span>
+            {!canCopy && <span className="window-menu__value">{t('window.items.unavailable')}</span>}
           </button>
 
           {status && (

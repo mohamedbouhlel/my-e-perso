@@ -1,6 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import BackToTop from './components/BackToTop';
+import Icon from './components/Icon';
+import LanguageSwitcher from './components/LanguageSwitcher';
 import TabNav from './components/TabNav';
 import WindowMenu from './components/WindowMenu';
+import {
+  footerLinkHrefs,
+  footerLinkIds,
+  headerNavIds,
+  sectionIcons,
+  siteIdentity,
+} from './content/site';
 import { DEFAULT_SECTION_ID, SECTIONS, isSectionId, type SectionId } from './sections';
 
 function readSectionFromHash(): SectionId {
@@ -9,6 +20,7 @@ function readSectionFromHash(): SectionId {
 }
 
 export default function App() {
+  const { t, i18n } = useTranslation();
   const [activeId, setActiveId] = useState<SectionId>(readSectionFromHash);
   const isFirstRender = useRef(true);
 
@@ -41,30 +53,114 @@ export default function App() {
     window.scrollTo(0, 0);
   }, [activeId]);
 
+  // Titre et description du document suivent la langue active.
+  useEffect(() => {
+    document.title = t('meta.title');
+    document.querySelector('meta[name="description"]')?.setAttribute('content', t('meta.description'));
+  }, [t, i18n.language]);
+
+  const tabItems = SECTIONS.map((section) => ({
+    id: section.id,
+    label: t(`sections.${section.id}`),
+    ...sectionIcons[section.id],
+  }));
+
   return (
-    <div className="shell">
+    <div className="app">
       <a className="skip-link" href="#contenu">
-        Aller au contenu
+        {t('a11y.skipToContent')}
       </a>
 
-      <header className="shell__header">
-        <p className="shell__brand">Site personnel</p>
-        <WindowMenu />
-      </header>
+      {/* Faux environnement de fenêtre : interface du site, pas le navigateur réel. */}
+      <div className="chrome">
+        <div className="chrome__bar">
+          <WindowMenu />
+          <TabNav items={tabItems} activeId={activeId} />
+          <span className="chrome__plus" aria-hidden="true">
+            +
+          </span>
+        </div>
 
-      <TabNav items={SECTIONS} activeId={activeId} />
+        <div className="chrome__address" aria-hidden="true">
+          <span className="chrome__url">
+            <Icon name="lock" size={14} />
+            <span>{siteIdentity.address}</span>
+          </span>
+          <span className="chrome__badge">
+            <Icon name="trophy" size={15} />
+          </span>
+          <span className="chrome__avatar">{siteIdentity.monogram}</span>
+        </div>
+      </div>
 
-      <main className="shell__panel" id="contenu">
-        {SECTIONS.map(({ id, Component }) => (
-          <div className="shell__view" id={id} key={id} hidden={id !== activeId}>
-            <Component />
-          </div>
-        ))}
-      </main>
+      <div className="shell">
+        <header className="site-header">
+          <a className="site-header__brand" href="#accueil">
+            <span className="site-header__logo" aria-hidden="true">
+              {siteIdentity.monogram}
+            </span>
+            <span className="site-header__name">{siteIdentity.name}</span>
+          </a>
 
-      <footer className="shell__footer">
-        <p>© {new Date().getFullYear()} — Site personnel</p>
-      </footer>
+          <nav className="site-header__nav" aria-label={t('a11y.headerNav')}>
+            {headerNavIds.map((id) => (
+              <a
+                key={id}
+                className="site-header__link"
+                href={`#${id}`}
+                aria-current={id === activeId ? 'true' : undefined}
+              >
+                {t(`headerNav.${id}`)}
+              </a>
+            ))}
+          </nav>
+
+          <LanguageSwitcher />
+
+          <a className="btn btn--primary site-header__cta" href="#contact">
+            {t('common.contactCta')}
+            <span className="btn__icon">
+              <Icon name="arrow-right" size={16} />
+            </span>
+          </a>
+        </header>
+
+        <main className="shell__panel" id="contenu">
+          {SECTIONS.map(({ id, Component }) => (
+            <div className="shell__view" id={id} key={id} hidden={id !== activeId}>
+              <Component />
+            </div>
+          ))}
+        </main>
+
+        <footer className="site-footer">
+          <span className="site-footer__name">{siteIdentity.name}</span>
+          <p className="site-footer__note">
+            © {new Date().getFullYear()} — {t('footer.tagline')} {t('footer.note')}
+          </p>
+          <nav className="site-footer__links" aria-label={t('a11y.footerNav')}>
+            {footerLinkIds.map((id) => {
+              const href = footerLinkHrefs[id];
+
+              return href ? (
+                <a key={id} href={href}>
+                  {t(`footer.links.${id}`)}
+                </a>
+              ) : (
+                <span
+                  className="site-footer__link-pending"
+                  key={id}
+                  title={t('common.linkPending')}
+                >
+                  {t(`footer.links.${id}`)}
+                </span>
+              );
+            })}
+          </nav>
+        </footer>
+      </div>
+
+      <BackToTop />
     </div>
   );
 }
