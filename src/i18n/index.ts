@@ -75,21 +75,34 @@ async function loadLanguage(language: Language): Promise<void> {
 
 const initialLanguage = resolveInitialLanguage();
 const initialModule = await LANGUAGE_LOADERS[initialLanguage]();
-i18n.addResourceBundle(initialLanguage, 'translation', initialModule.default, true, true);
-loadedLanguages.add(initialLanguage);
+
+const resources: Record<string, { translation: Translations }> = {
+  [initialLanguage]: {
+    translation: initialModule.default,
+  },
+};
 
 if (initialLanguage !== DEFAULT_LANGUAGE) {
   const fallbackModule = await LANGUAGE_LOADERS[DEFAULT_LANGUAGE]();
-  i18n.addResourceBundle(DEFAULT_LANGUAGE, 'translation', fallbackModule.default, true, true);
-  loadedLanguages.add(DEFAULT_LANGUAGE);
+
+  resources[DEFAULT_LANGUAGE] = {
+    translation: fallbackModule.default,
+  };
 }
 
 await i18n.use(initReactI18next).init({
+  resources,
   lng: initialLanguage,
   fallbackLng: DEFAULT_LANGUAGE,
   interpolation: { escapeValue: false },
   returnNull: false,
 });
+
+loadedLanguages.add(initialLanguage);
+
+if (initialLanguage !== DEFAULT_LANGUAGE) {
+  loadedLanguages.add(DEFAULT_LANGUAGE);
+}
 
 document.documentElement.lang = initialLanguage;
 
