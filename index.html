@@ -3,7 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Operius — projets, compétences et contact." />
+    <meta name="description" content="Operius — solutions techniques du terrain au logiciel : réseaux, infrastructure, automatisation, développement et IA." />
+    <!-- Apparence : applique le thème enregistré avant le premier rendu, pour éviter un flash.
+         Même clé de stockage, même valeur par défaut et même résolution que `src/theme.ts`. -->
+    <script>
+      (function () {
+        var choice = null;
+        try {
+          choice = window.localStorage.getItem('site-theme');
+        } catch (error) {
+          choice = null;
+        }
+        if (choice !== 'light' && choice !== 'dark' && choice !== 'system') {
+          choice = 'system';
+        }
+        var dark =
+          typeof window.matchMedia === 'function' &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme =
+          choice === 'system' ? (dark ? 'dark' : 'light') : choice;
+      })();
+    </script>
     <!-- Favicon en ligne (SVG) : reprend le monogramme du site, sans fichier binaire à ajouter. -->
     <link
       rel="icon"
