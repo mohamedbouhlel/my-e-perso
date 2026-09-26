@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
+# NOTE:
+# `set -e` est volontairement désactivé.
+# Chaque opération critique est contrôlée explicitement afin de pouvoir
+# conserver le code d'erreur, distinguer les états modifiés et effectuer
+# un rollback ciblé.
 set -u
 set -o pipefail
-
-# ============================================================
-# my-e-perso — Production deployment
-# ============================================================
 
 PROJECT_DIR="/home/cesar/my-e-perso"
 COMPOSE_FILE="docker-compose.prod.yml"
@@ -13,9 +14,13 @@ COMPOSE_FILE="docker-compose.prod.yml"
 CONTAINER_NAME="my-e-perso-web"
 IMAGE_NAME="my-e-perso-web"
 
-LOCAL_HEALTH_URL="http://127.0.0.1:8090/health"
+LOCAL_PORT="8090"
+LOCAL_HEALTH_PATH="/health"
+LOCAL_HEALTH_URL="http://127.0.0.1:${LOCAL_PORT}${LOCAL_HEALTH_PATH}"
+
 PUBLIC_URL="https://operius.fr/"
 PUBLIC_HEALTH_URL="https://operius.fr/health"
+PUBLIC_HEALTH_EXPECTED="ok"
 
 EXPECTED_BRANCH="main"
 EXPECTED_REMOTE="git@github.com:mohamedbouhlel/my-e-perso.git"
@@ -23,8 +28,12 @@ EXPECTED_REMOTE="git@github.com:mohamedbouhlel/my-e-perso.git"
 BACKUP_ROOT="${HOME}/backups/my-e-perso"
 LOCK_FILE="${HOME}/.cache/my-e-perso-deploy.lock"
 
-# 2 GiB minimum avant build.
 MIN_FREE_SPACE_KB=$((2 * 1024 * 1024))
+
+HEALTH_MAX_ATTEMPTS=12
+HEALTH_RETRY_DELAY=2
+LOCAL_HEALTH_TIMEOUT=5
+PUBLIC_HEALTH_TIMEOUT=20
 
 CURRENT_COMMIT=""
 TARGET_COMMIT=""
@@ -35,15 +44,11 @@ CURRENT_CONTAINER_ID=""
 NEW_IMAGE_ID=""
 
 BACKUP_DIR=""
+PREVIOUS_IMAGE_TAG=""
 
-# Le rollback n'est armé qu'après modification effective
-# du dépôt de production.
-ROLLBACK_ARMED=0
+GIT_CHANGED=0
+DOCKER_CHANGED=0
 
-
-# ============================================================
-# Usage
-# ============================================================
 
 usage() {
     cat <<'EOF'
@@ -75,27 +80,21 @@ Deployment flow:
   5. Vérification d'un nouveau commit
   6. Backup de l'état actuel
   7. Pull --ff-only
-  8. Armement du rollback
-  9. Validation
- 10. Build Docker
- 11. Tag de l'image par commit
- 12. Déploiement
- 13. Vérification de l'image réellement utilisée
- 14. Healthcheck local
- 15. Vérification HTTPS publique
- 16. Verdict
+  8. Validation
+  9. Build Docker avec --pull
+ 10. Conservation de l'ancienne image
+ 11. Déploiement
+ 12. Vérification de l'image réellement utilisée
+ 13. Healthcheck local
+ 14. Vérification HTTPS publique
+ 15. Verdict
 
 Rollback:
-  Si une modification effective du dépôt a été effectuée
-  puis qu'une étape critique échoue, le commit et l'image
-  précédents sont restaurés.
+  Le rollback restaure uniquement les composants qui ont
+  effectivement été modifiés.
 EOF
 }
 
-
-# ============================================================
-# Logging
-# ============================================================
 
 timestamp() {
     date '+%Y-%m-%d %H:%M:%S'
@@ -122,20 +121,41 @@ die() {
 }
 
 
-# ============================================================
-# Cleanup
-# ============================================================
+on_exit() {
+    local exit_code=$?
 
-cleanup() {
+    if [[ "$exit_code" -ne 0 ]]; then
+        error_log "Script terminé avec le code ${exit_code}."
+    fi
+
+    # FD 9 est automatiquement fermé par le shell.
+    # Aucun rollback n'est effectué depuis le trap.
+    return "$exit_code"
+}
+
+
+on_signal() {
+    local signal="$1"
+
+    error_log "Signal ${signal} reçu."
+
+    # Le rollback est volontairement laissé à main().
+    # Le trap évite uniquement une terminaison silencieuse.
+    exit 130
+}
+
+
+trap on_exit EXIT
+trap 'on_signal INT' INT
+trap 'on_signal TERM' TERM
+
+
+report_backup() {
     if [[ -n "${BACKUP_DIR}" && -d "${BACKUP_DIR}" ]]; then
         log "Backup de déploiement : ${BACKUP_DIR}"
     fi
 }
 
-
-# ============================================================
-# Dependencies
-# ============================================================
 
 require_command() {
     local command_name="$1"
@@ -147,22 +167,15 @@ require_command() {
 }
 
 
-# ============================================================
-# Git helpers
-# ============================================================
-
 git_remote_url() {
     git -C "$PROJECT_DIR" remote get-url origin 2>/dev/null
 }
+
 
 git_worktree_clean() {
     [[ -z "$(git -C "$PROJECT_DIR" status --porcelain)" ]]
 }
 
-
-# ============================================================
-# Lock
-# ============================================================
 
 acquire_lock() {
     local lock_dir
@@ -185,10 +198,6 @@ acquire_lock() {
 }
 
 
-# ============================================================
-# Local check
-# ============================================================
-
 local_check() {
     section "CHECK LOCAL"
 
@@ -198,7 +207,9 @@ local_check() {
 
     local repository_root
 
-    repository_root="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+    repository_root="$(
+        git rev-parse --show-toplevel 2>/dev/null
+    )" || {
         die "Le répertoire courant n'est pas un dépôt Git."
         return 1
     }
@@ -232,10 +243,6 @@ local_check() {
 }
 
 
-# ============================================================
-# Production preflight
-# ============================================================
-
 preflight() {
     section "PREFLIGHT PRODUCTION"
 
@@ -257,6 +264,7 @@ preflight() {
     require_command flock || return 1
     require_command df || return 1
     require_command awk || return 1
+    require_command rg || return 1
     require_command date || return 1
     require_command sleep || return 1
     require_command mkdir || return 1
@@ -267,6 +275,7 @@ preflight() {
     fi
 
     local branch
+
     branch="$(git -C "$PROJECT_DIR" branch --show-current)"
 
     if [[ "$branch" != "$EXPECTED_BRANCH" ]]; then
@@ -275,6 +284,7 @@ preflight() {
     fi
 
     local remote
+
     remote="$(git_remote_url)"
 
     if [[ "$remote" != "$EXPECTED_REMOTE" ]]; then
@@ -305,7 +315,11 @@ preflight() {
     fi
 
     local available_kb
-    available_kb="$(df -Pk "$PROJECT_DIR" | awk 'NR==2 {print $4}')"
+
+    available_kb="$(
+        df -Pk "$PROJECT_DIR" |
+            awk 'NR==2 {print $4}'
+    )"
 
     if [[ -z "$available_kb" || "$available_kb" -lt "$MIN_FREE_SPACE_KB" ]]; then
         die "Espace disque insuffisant : moins de 2 GiB disponibles."
@@ -313,21 +327,14 @@ preflight() {
     fi
 
     log "Espace disque disponible : ${available_kb} KiB"
-
     log "Préflight production OK."
 }
 
 
-# ============================================================
-# Capture current state
-# ============================================================
-
 capture_current_state() {
     section "CAPTURE ETAT ACTUEL"
 
-    CURRENT_COMMIT="$(
-        git -C "$PROJECT_DIR" rev-parse HEAD
-    )"
+    CURRENT_COMMIT="$(git -C "$PROJECT_DIR" rev-parse HEAD)"
 
     if [[ -z "$CURRENT_COMMIT" ]]; then
         die "Impossible de déterminer le commit courant."
@@ -352,18 +359,11 @@ capture_current_state() {
         return 1
     fi
 
-    log "Commit courant  : ${CURRENT_COMMIT}"
-    log "Container       : ${CURRENT_CONTAINER_ID}"
-    log "Image courante  : ${CURRENT_IMAGE_ID}"
-
-    # IMPORTANT :
-    # ROLLBACK_ARMED reste à 0 ici.
+    log "Commit courant : ${CURRENT_COMMIT}"
+    log "Container      : ${CURRENT_CONTAINER_ID}"
+    log "Image courante : ${CURRENT_IMAGE_ID}"
 }
 
-
-# ============================================================
-# Synchronisation Git
-# ============================================================
 
 sync_repository() {
     section "SYNCHRONISATION GIT"
@@ -375,17 +375,15 @@ sync_repository() {
 
     local origin_commit
 
-    origin_commit="$(
-        git -C "$PROJECT_DIR" rev-parse origin/main
-    )"
+    origin_commit="$(git -C "$PROJECT_DIR" rev-parse origin/main)"
 
     if [[ -z "$origin_commit" ]]; then
         die "Impossible de déterminer origin/main."
         return 1
     fi
 
-    log "HEAD actuel   : ${CURRENT_COMMIT}"
-    log "origin/main   : ${origin_commit}"
+    log "HEAD actuel : ${CURRENT_COMMIT}"
+    log "origin/main : ${origin_commit}"
 
     if [[ "$origin_commit" == "$CURRENT_COMMIT" ]]; then
         TARGET_COMMIT="$CURRENT_COMMIT"
@@ -398,10 +396,6 @@ sync_repository() {
     log "Nouveau commit détecté : ${TARGET_COMMIT}"
 }
 
-
-# ============================================================
-# Backup
-# ============================================================
 
 create_backup() {
     section "BACKUP"
@@ -417,7 +411,6 @@ create_backup() {
         return 1
     fi
 
-    # Bundle complet du dépôt disponible au moment du backup.
     if ! git -C "$PROJECT_DIR" bundle create \
         "${BACKUP_DIR}/repository.bundle" \
         --all; then
@@ -459,10 +452,6 @@ EOF
 }
 
 
-# ============================================================
-# Pull production
-# ============================================================
-
 pull_target() {
     section "MISE A JOUR GIT"
 
@@ -471,11 +460,11 @@ pull_target() {
         return 1
     fi
 
+    GIT_CHANGED=1
+
     local resulting_commit
 
-    resulting_commit="$(
-        git -C "$PROJECT_DIR" rev-parse HEAD
-    )"
+    resulting_commit="$(git -C "$PROJECT_DIR" rev-parse HEAD)"
 
     if [[ "$resulting_commit" != "$TARGET_COMMIT" ]]; then
         die "HEAD après pull ne correspond pas au commit cible."
@@ -488,17 +477,9 @@ pull_target() {
     fi
 
     log "HEAD après pull : ${resulting_commit}"
-
-    # Le dépôt de production a maintenant réellement changé.
-    ROLLBACK_ARMED=1
-
-    log "Rollback armé."
+    log "État Git modifié."
 }
 
-
-# ============================================================
-# Validation
-# ============================================================
 
 validate_source() {
     section "VALIDATION SOURCE"
@@ -535,16 +516,28 @@ validate_source() {
 }
 
 
-# ============================================================
-# Docker build
-# ============================================================
+preserve_current_image() {
+    section "CONSERVATION IMAGE PRECEDENTE"
+
+    PREVIOUS_IMAGE_TAG="${IMAGE_NAME}:previous-${CURRENT_COMMIT:0:12}"
+
+    if ! docker tag \
+        "$CURRENT_IMAGE_ID" \
+        "$PREVIOUS_IMAGE_TAG"; then
+        die "Impossible de conserver l'image précédente."
+        return 1
+    fi
+
+    log "Image précédente : ${PREVIOUS_IMAGE_TAG}"
+}
+
 
 build_image() {
     section "BUILD DOCKER"
 
     if ! docker compose \
         -f "${PROJECT_DIR}/${COMPOSE_FILE}" \
-        build; then
+        build --pull; then
         die "Docker build échoué."
         return 1
     fi
@@ -579,10 +572,6 @@ build_image() {
 }
 
 
-# ============================================================
-# Deploy container
-# ============================================================
-
 deploy_container() {
     section "DEPLOIEMENT"
 
@@ -590,6 +579,8 @@ deploy_container() {
         die "NEW_IMAGE_ID est vide."
         return 1
     fi
+
+    DOCKER_CHANGED=1
 
     if ! docker compose \
         -f "${PROJECT_DIR}/${COMPOSE_FILE}" \
@@ -645,63 +636,82 @@ deploy_container() {
 }
 
 
-# ============================================================
-# Local health
-# ============================================================
-
 check_local_health() {
     section "HEALTHCHECK LOCAL"
 
     local attempt
-    local max_attempts=12
 
-    for ((attempt=1; attempt<=max_attempts; attempt++)); do
+    for ((attempt=1; attempt<=HEALTH_MAX_ATTEMPTS; attempt++)); do
         if curl \
             --fail \
             --silent \
-            --show-error \
-            --max-time 5 \
-            "$LOCAL_HEALTH_URL" >/dev/null; then
+            --max-time "$LOCAL_HEALTH_TIMEOUT" \
+            "$LOCAL_HEALTH_URL" >/dev/null 2>&1; then
 
-            log "Health local OK (${attempt}/${max_attempts})"
+            log "Health local OK (${attempt}/${HEALTH_MAX_ATTEMPTS})"
             return 0
         fi
 
-        log "Health local en attente (${attempt}/${max_attempts})"
-        sleep 2
+        log "Health local en attente (${attempt}/${HEALTH_MAX_ATTEMPTS})"
+
+        if (( attempt < HEALTH_MAX_ATTEMPTS )); then
+            sleep "$HEALTH_RETRY_DELAY"
+        fi
     done
 
-    die "Health local échoué après ${max_attempts} tentatives."
+    die "Health local échoué après ${HEALTH_MAX_ATTEMPTS} tentatives."
     return 1
 }
 
 
-# ============================================================
-# Public health
-# ============================================================
-
 check_public_health() {
     section "HEALTHCHECK PUBLIC"
 
+    local health_response
     local health_code
     local public_code
+    local effective_url
 
-    health_code="$(
+    health_response="$(
         curl \
             --silent \
             --show-error \
             --location \
-            --max-time 20 \
-            --output /dev/null \
-            --write-out '%{http_code}' \
+            --max-time "$PUBLIC_HEALTH_TIMEOUT" \
+            --write-out $'\n%{http_code}\n%{url_effective}' \
             "$PUBLIC_HEALTH_URL"
     )" || {
         die "Impossible d'accéder à ${PUBLIC_HEALTH_URL}"
         return 1
     }
 
+    health_code="$(
+        printf '%s\n' "$health_response" |
+            tail -n 2 |
+            head -n 1
+    )"
+
+    effective_url="$(
+        printf '%s\n' "$health_response" |
+            tail -n 1
+    )"
+
     if [[ "$health_code" != "200" ]]; then
         die "Health public inattendu : HTTP ${health_code}"
+        return 1
+    fi
+
+    if [[ "$effective_url" != "$PUBLIC_HEALTH_URL" ]]; then
+        die "URL health finale inattendue : ${effective_url}"
+        return 1
+    fi
+
+    if ! printf '%s\n' "$health_response" |
+        sed '$d' |
+        sed '$d' |
+        rg -Fxq "$PUBLIC_HEALTH_EXPECTED"; then
+
+        die "Le contenu du health public n'est pas '${PUBLIC_HEALTH_EXPECTED}'."
         return 1
     fi
 
@@ -710,7 +720,7 @@ check_public_health() {
             --silent \
             --show-error \
             --location \
-            --max-time 20 \
+            --max-time "$PUBLIC_HEALTH_TIMEOUT" \
             --output /dev/null \
             --write-out '%{http_code}' \
             "$PUBLIC_URL"
@@ -729,45 +739,87 @@ check_public_health() {
 }
 
 
-# ============================================================
-# Rollback
-# ============================================================
-
-rollback() {
-    section "ROLLBACK"
-
-    if [[ "$ROLLBACK_ARMED" -ne 1 ]]; then
-        log "Rollback non armé : aucune modification de production à restaurer."
+rollback_git() {
+    if [[ "$GIT_CHANGED" -ne 1 ]]; then
+        log "Rollback Git : aucune modification Git."
         return 0
     fi
 
-    local rollback_failed=0
+    log "Rollback Git vers ${CURRENT_COMMIT}."
 
-    log "Commit cible rollback : ${CURRENT_COMMIT}"
-    log "Image cible rollback  : ${CURRENT_IMAGE_ID}"
+    if git -C "$PROJECT_DIR" cat-file -e "${CURRENT_COMMIT}^{commit}" >/dev/null 2>&1; then
+        if ! git -C "$PROJECT_DIR" reset --hard "$CURRENT_COMMIT"; then
+            error_log "Rollback Git : reset --hard échoué."
+            return 1
+        fi
 
-    # Restaurer exactement le commit précédent.
-    if ! git -C "$PROJECT_DIR" reset --hard "$CURRENT_COMMIT"; then
-        error_log "Rollback Git : reset --hard échoué."
-        rollback_failed=1
+        log "Rollback Git local effectué."
+        return 0
     fi
 
-    # Restaurer exactement l'image précédente.
+    if [[ -z "$BACKUP_DIR" || ! -f "${BACKUP_DIR}/repository.bundle" ]]; then
+        error_log "Rollback Git impossible : commit absent et bundle indisponible."
+        return 1
+    fi
+
+    log "Commit absent localement : restauration depuis le bundle."
+
+    if ! git bundle verify \
+        "${BACKUP_DIR}/repository.bundle" >/dev/null 2>&1; then
+        error_log "Le Git bundle est invalide ou inutilisable."
+        return 1
+    fi
+
+    if ! git bundle unbundle \
+        "${BACKUP_DIR}/repository.bundle" >/dev/null; then
+        error_log "Impossible de restaurer les objets depuis le bundle."
+        return 1
+    fi
+
+    if ! git -C "$PROJECT_DIR" reset --hard "$CURRENT_COMMIT"; then
+        error_log "Rollback Git depuis le bundle échoué."
+        return 1
+    fi
+
+    log "Rollback Git depuis le bundle effectué."
+}
+
+
+rollback_docker() {
+    if [[ "$DOCKER_CHANGED" -ne 1 ]]; then
+        log "Rollback Docker : aucune modification Docker."
+        return 0
+    fi
+
+    if [[ -z "$PREVIOUS_IMAGE_TAG" ]]; then
+        error_log "Rollback Docker impossible : tag précédent inconnu."
+        return 1
+    fi
+
+    log "Rollback Docker vers ${PREVIOUS_IMAGE_TAG}."
+
+    if ! docker image inspect \
+        "$PREVIOUS_IMAGE_TAG" >/dev/null 2>&1; then
+        error_log "Image précédente absente : ${PREVIOUS_IMAGE_TAG}"
+        return 1
+    fi
+
     if ! docker tag \
-        "$CURRENT_IMAGE_ID" \
+        "$PREVIOUS_IMAGE_TAG" \
         "${IMAGE_NAME}:latest"; then
-        error_log "Rollback Docker : impossible de restaurer l'image."
-        rollback_failed=1
+        error_log "Impossible de restaurer l'image précédente."
+        return 1
     fi
 
     if ! docker compose \
         -f "${PROJECT_DIR}/${COMPOSE_FILE}" \
         up -d --no-build; then
         error_log "Rollback Docker Compose échoué."
-        rollback_failed=1
+        return 1
     fi
 
     local rollback_image
+    local previous_image_id
 
     rollback_image="$(
         docker inspect \
@@ -776,23 +828,44 @@ rollback() {
             2>/dev/null || true
     )"
 
-    if [[ "$rollback_image" != "$CURRENT_IMAGE_ID" ]]; then
-        error_log "Rollback : le conteneur n'utilise pas l'image précédente."
-        error_log "Attendu : ${CURRENT_IMAGE_ID}"
+    previous_image_id="$(
+        docker inspect \
+            -f '{{.Id}}' \
+            "$PREVIOUS_IMAGE_TAG" \
+            2>/dev/null || true
+    )"
+
+    if [[ "$rollback_image" != "$previous_image_id" ]]; then
+        error_log "Le conteneur n'utilise pas l'image précédente après rollback."
+        error_log "Attendu : ${previous_image_id}"
         error_log "Actuel   : ${rollback_image}"
+        return 1
+    fi
+
+    log "Rollback Docker effectué."
+}
+
+
+rollback() {
+    section "ROLLBACK"
+
+    local rollback_failed=0
+
+    if ! rollback_git; then
         rollback_failed=1
     fi
 
-    if ! curl \
-        --fail \
-        --silent \
-        --show-error \
-        --max-time 10 \
-        "$LOCAL_HEALTH_URL" >/dev/null; then
-        error_log "Rollback : health local KO."
+    if ! rollback_docker; then
         rollback_failed=1
-    else
-        log "Health local après rollback : OK"
+    fi
+
+    if [[ "$DOCKER_CHANGED" -eq 1 ]]; then
+        if ! check_local_health; then
+            error_log "Health local KO après rollback."
+            rollback_failed=1
+        else
+            log "Health local après rollback : OK"
+        fi
     fi
 
     if [[ "$rollback_failed" -ne 0 ]]; then
@@ -805,30 +878,21 @@ rollback() {
 }
 
 
-# ============================================================
-# Deploy workflow
-# ============================================================
-
 run_deploy() {
     preflight || return 1
     acquire_lock || return 1
 
     capture_current_state || return 1
-
     sync_repository || return 1
 
-    # Aucun changement : aucune sauvegarde ni modification.
     if [[ "$TARGET_COMMIT" == "$CURRENT_COMMIT" ]]; then
         log "Déploiement inutile : aucun nouveau commit."
         return 0
     fi
 
-    # Le backup est créé seulement lorsqu'un déploiement est réellement
-    # nécessaire et avant toute modification du dépôt de production.
     create_backup || return 1
-
+    preserve_current_image || return 1
     pull_target || return 1
-
     validate_source || return 1
     build_image || return 1
     deploy_container || return 1
@@ -840,9 +904,7 @@ run_deploy() {
     local final_commit
     local final_image
 
-    final_commit="$(
-        git -C "$PROJECT_DIR" rev-parse HEAD
-    )"
+    final_commit="$(git -C "$PROJECT_DIR" rev-parse HEAD)"
 
     if [[ "$final_commit" != "$TARGET_COMMIT" ]]; then
         die "Le commit final ne correspond pas au commit déployé."
@@ -869,18 +931,12 @@ run_deploy() {
     log "Image déployée  : ${final_image}"
     log "Déploiement terminé avec succès."
 
-    ROLLBACK_ARMED=0
-
     return 0
 }
 
-
-# ============================================================
-# Main
-# ============================================================
-
 main() {
     local mode="deploy"
+    local deploy_rc=0
 
     case "${1:-}" in
         "")
@@ -922,25 +978,28 @@ main() {
             ;;
 
         deploy)
-            run_deploy
-            local deploy_rc=$?
+            # Ne pas écrire :
+            #   if run_deploy; then ... fi
+            #
+            # Le statut doit être capturé explicitement.
+            run_deploy || deploy_rc=$?
 
-            # IMPORTANT :
-            # le statut de run_deploy doit être capturé immédiatement.
             if [[ "$deploy_rc" -eq 0 ]]; then
-                cleanup
+                report_backup
                 return 0
             fi
 
-            if [[ "$ROLLBACK_ARMED" -eq 1 ]]; then
+            if [[ "$GIT_CHANGED" -eq 1 || "$DOCKER_CHANGED" -eq 1 ]]; then
                 if ! rollback; then
                     error_log "ATTENTION : le rollback a échoué ou est incomplet."
                 fi
+            else
+                log "Aucune modification de production : rollback inutile."
             fi
 
-            cleanup
+            report_backup
 
-            # Retourne le code d'échec ORIGINAL.
+            # Le code d'échec ORIGINAL est conservé.
             return "$deploy_rc"
             ;;
     esac
@@ -948,4 +1007,3 @@ main() {
 
 
 main "$@"
-exit $?
