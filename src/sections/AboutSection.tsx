@@ -91,6 +91,7 @@ export default function AboutSection() {
         className="wide-visual"
         src={visualSources.aboutWorkshop}
         alt={t('visuals.alt.aboutWorkshop')}
+        loading="lazy"
       />
 
       <CallToAction
