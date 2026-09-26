@@ -1,10 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next, useTranslation } from 'react-i18next';
-import de from './de';
-import en from './en';
-import es from './es';
-import fr from './fr';
-import it from './it';
+import type { Translations } from './fr';
 
 export const SUPPORTED_LANGUAGES = ['fr', 'en', 'es', 'it', 'de'] as const;
 
@@ -23,6 +19,18 @@ export const LANGUAGE_NAMES: Record<Language, string> = {
 };
 
 const STORAGE_KEY = 'site-language';
+
+type TranslationModule = { default: Translations };
+
+const LANGUAGE_LOADERS: Record<Language, () => Promise<TranslationModule>> = {
+  fr: () => import('./fr'),
+  en: () => import('./en'),
+  es: () => import('./es'),
+  it: () => import('./it'),
+  de: () => import('./de'),
+};
+
+const loadedLanguages = new Set<Language>();
 
 export function isLanguage(value: unknown): value is Language {
   return typeof value === 'string' && (SUPPORTED_LANGUAGES as readonly string[]).includes(value);
@@ -55,16 +63,28 @@ function resolveInitialLanguage(): Language {
   return readStoredLanguage() ?? readBrowserLanguage() ?? DEFAULT_LANGUAGE;
 }
 
-const initialLanguage = resolveInitialLanguage();
+async function loadLanguage(language: Language): Promise<void> {
+  if (loadedLanguages.has(language)) {
+    return;
+  }
 
-void i18n.use(initReactI18next).init({
-  resources: {
-    fr: { translation: fr },
-    en: { translation: en },
-    es: { translation: es },
-    it: { translation: it },
-    de: { translation: de },
-  },
+  const module = await LANGUAGE_LOADERS[language]();
+  i18n.addResourceBundle(language, 'translation', module.default, true, true);
+  loadedLanguages.add(language);
+}
+
+const initialLanguage = resolveInitialLanguage();
+const initialModule = await LANGUAGE_LOADERS[initialLanguage]();
+i18n.addResourceBundle(initialLanguage, 'translation', initialModule.default, true, true);
+loadedLanguages.add(initialLanguage);
+
+if (initialLanguage !== DEFAULT_LANGUAGE) {
+  const fallbackModule = await LANGUAGE_LOADERS[DEFAULT_LANGUAGE]();
+  i18n.addResourceBundle(DEFAULT_LANGUAGE, 'translation', fallbackModule.default, true, true);
+  loadedLanguages.add(DEFAULT_LANGUAGE);
+}
+
+await i18n.use(initReactI18next).init({
   lng: initialLanguage,
   fallbackLng: DEFAULT_LANGUAGE,
   interpolation: { escapeValue: false },
@@ -76,9 +96,13 @@ document.documentElement.lang = initialLanguage;
 /**
  * Change la langue sans rechargement : le hash de l'URL n'est pas touché,
  * la section courante reste donc affichée.
+ *
+ * Les autres langues sont chargées à la demande afin de ne pas envoyer
+ * cinq catalogues de traduction au premier chargement.
  */
-export function changeLanguage(language: Language) {
-  void i18n.changeLanguage(language);
+export async function changeLanguage(language: Language) {
+  await loadLanguage(language);
+  await i18n.changeLanguage(language);
 
   try {
     window.localStorage.setItem(STORAGE_KEY, language);
