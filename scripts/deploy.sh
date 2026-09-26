@@ -496,6 +496,7 @@ validate_source() {
 
     if ! (
         cd "$PROJECT_DIR" &&
+        npm ci &&
         bash scripts/validate.sh
     ); then
         die "Validation technique échouée."
