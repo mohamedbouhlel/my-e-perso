@@ -1,8 +1,10 @@
-import AboutSection from './AboutSection';
-import ContactSection from './ContactSection';
-import HomeSection from './HomeSection';
-import ProjectsSection from './ProjectsSection';
-import SkillsSection from './SkillsSection';
+import { lazy } from 'react';
+
+const HomeSection = lazy(() => import('./HomeSection'));
+const ProjectsSection = lazy(() => import('./ProjectsSection'));
+const SkillsSection = lazy(() => import('./SkillsSection'));
+const AboutSection = lazy(() => import('./AboutSection'));
+const ContactSection = lazy(() => import('./ContactSection'));
 
 /** Source unique des onglets : identifiant d'URL, libellé et contenu. */
 export const SECTIONS = [
