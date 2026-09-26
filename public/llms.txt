@@ -1,0 +1,26 @@
+# Operius
+
+> Operius présente des solutions techniques du terrain au logiciel : réseaux, infrastructure, sécurité, courant faible, domotique, automatisation, développement et IA.
+
+Site personnel présentant des projets, compétences, parcours et moyens de contact.
+
+Le contenu de référence est français. Le site propose également les langues anglaise, espagnole, italienne et allemande.
+
+## Site
+
+- [Accueil](https://operius.fr/#accueil): approche et domaines d’intervention.
+- [Projets](https://operius.fr/#projets): projets d’infrastructure, d’IA, d’automatisation et de développement.
+- [Compétences](https://operius.fr/#competences): terrain, infrastructure, développement et IA.
+- [À propos](https://operius.fr/#a-propos): parcours et profil hybride.
+- [Contact](https://operius.fr/#contact): présentation du besoin et formulaire de contact.
+
+## Projets
+
+- [Smart BTP ProGest](https://operius.fr/#projets): exploration d’un outil de gestion de projets destiné aux artisans et petites entreprises.
+- [Versutus IA](https://operius.fr/#projets): infrastructure d’IA locale réunissant modèles, RAG, mémoire, API et outils.
+- [Cockpit Servers](https://operius.fr/#projets): infrastructure regroupant DNS, messagerie, certificats, reverse proxy, Docker et services web.
+- [Outils & automatisations](https://operius.fr/#projets): scripts et automatisations destinés à réduire les opérations répétitives.
+
+## Contact
+
+- [Contact](https://operius.fr/#contact): possibilité de décrire un problème technique, une amélioration ou un projet.
