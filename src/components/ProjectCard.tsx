@@ -26,6 +26,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           className="project-card__visual"
           src={visualSources[project.visual.visualId]}
           alt={t(`visuals.alt.${project.visual.visualId}`)}
+          loading="lazy"
           overlay={project.visual.overlay}
         >
           {/* La référence n'incruste pas de panneau sur tous les visuels photo. */}
