@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import BackToTop from './components/BackToTop';
 import Icon from './components/Icon';
@@ -65,6 +65,9 @@ export default function App() {
     ...sectionIcons[section.id],
   }));
 
+  const activeSection = SECTIONS.find((section) => section.id === activeId) ?? SECTIONS[0];
+  const ActiveSection = activeSection.Component;
+
   return (
     <div className="app">
       <a className="skip-link" href="#contenu">
@@ -128,11 +131,11 @@ export default function App() {
         </header>
 
         <main className="shell__panel" id="contenu">
-          {SECTIONS.map(({ id, Component }) => (
-            <div className="shell__view" id={id} key={id} hidden={id !== activeId}>
-              <Component />
+          <Suspense fallback={null}>
+            <div className="shell__view" id={activeSection.id}>
+              <ActiveSection />
             </div>
-          ))}
+          </Suspense>
         </main>
 
         <footer className="site-footer">
