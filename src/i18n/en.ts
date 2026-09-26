@@ -27,7 +27,14 @@ const en: Translations = {
     groups: {
       window: 'Window',
       display: 'Display',
+      appearance: 'Appearance',
       share: 'Share',
+    },
+    /** Site appearance setting (see `src/theme.ts`). */
+    theme: {
+      light: 'Light',
+      dark: 'Dark',
+      system: 'System',
     },
     items: {
       fullscreen: 'Full screen',

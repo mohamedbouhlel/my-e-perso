@@ -28,7 +28,14 @@ const fr = {
     groups: {
       window: 'Fenêtre',
       display: 'Affichage',
+      appearance: 'Apparence',
       share: 'Partage',
+    },
+    /** Choix d'apparence du site (voir `src/theme.ts`). */
+    theme: {
+      light: 'Clair',
+      dark: 'Sombre',
+      system: 'Système',
     },
     items: {
       fullscreen: 'Plein écran',

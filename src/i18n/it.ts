@@ -22,7 +22,14 @@ const it: Translations = {
     groups: {
       window: 'Finestra',
       display: 'Visualizzazione',
+      appearance: 'Aspetto',
       share: 'Condivisione',
+    },
+    /** Impostazione dell'aspetto del sito (vedi `src/theme.ts`). */
+    theme: {
+      light: 'Chiaro',
+      dark: 'Scuro',
+      system: 'Sistema',
     },
     items: {
       fullscreen: 'Schermo intero',

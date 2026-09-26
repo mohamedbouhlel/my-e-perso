@@ -1,5 +1,12 @@
-import { useEffect, useId, useRef, useState } from 'react';
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type KeyboardEvent as ReactKeyboardEvent,
+} from 'react';
 import { useTranslation } from 'react-i18next';
+import { THEME_CHOICES, getThemeChoice, setTheme, type ThemeChoice } from '../theme';
 
 const ZOOM_STEPS: readonly number[] = [0.8, 0.9, 1, 1.1, 1.25, 1.5];
 const DEFAULT_ZOOM_INDEX = ZOOM_STEPS.indexOf(1);
@@ -13,11 +20,14 @@ export default function WindowMenu() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [canUseFullscreen, setCanUseFullscreen] = useState(false);
   const [canCopy, setCanCopy] = useState(false);
+  const [themeChoice, setThemeChoice] = useState<ThemeChoice>(getThemeChoice);
 
   const panelId = useId();
+  const appearanceLabelId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const appearanceRef = useRef<HTMLDivElement>(null);
 
   const zoom = ZOOM_STEPS[zoomIndex];
 
@@ -101,6 +111,32 @@ export default function WindowMenu() {
     }
   };
 
+  // Le thème est appliqué immédiatement : aucun rechargement, le hash de l'URL n'est pas touché.
+  const chooseTheme = (choice: ThemeChoice) => {
+    setTheme(choice);
+    setThemeChoice(choice);
+  };
+
+  // Liste de boutons radio : les flèches changent le choix et déplacent le focus (motif ARIA).
+  const handleThemeKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
+    const key = event.key;
+    const step =
+      key === 'ArrowDown' || key === 'ArrowRight' ? 1 : key === 'ArrowUp' || key === 'ArrowLeft' ? -1 : 0;
+
+    if (step === 0) {
+      return;
+    }
+
+    event.preventDefault();
+    const index = THEME_CHOICES.indexOf(themeChoice);
+    const nextChoice = THEME_CHOICES[(index + step + THEME_CHOICES.length) % THEME_CHOICES.length];
+
+    chooseTheme(nextChoice);
+    appearanceRef.current
+      ?.querySelectorAll<HTMLButtonElement>('[role="radio"]')
+      [THEME_CHOICES.indexOf(nextChoice)]?.focus();
+  };
+
   return (
     <div className="window-menu" ref={containerRef}>
       <button
@@ -164,6 +200,29 @@ export default function WindowMenu() {
           >
             {t('window.items.zoomReset')}
           </button>
+
+          <p className="window-menu__group-label" id={appearanceLabelId}>
+            {t('window.groups.appearance')}
+          </p>
+          <div role="radiogroup" aria-labelledby={appearanceLabelId} ref={appearanceRef}>
+            {THEME_CHOICES.map((choice) => (
+              <button
+                key={choice}
+                type="button"
+                role="radio"
+                aria-checked={choice === themeChoice}
+                tabIndex={choice === themeChoice ? 0 : -1}
+                className="window-menu__item window-menu__item--choice"
+                onClick={() => chooseTheme(choice)}
+                onKeyDown={handleThemeKeyDown}
+              >
+                <span className="window-menu__mark" aria-hidden="true">
+                  {choice === themeChoice ? '●' : '○'}
+                </span>
+                <span>{t(`window.theme.${choice}`)}</span>
+              </button>
+            ))}
+          </div>
 
           <p className="window-menu__group-label">{t('window.groups.share')}</p>
           <button

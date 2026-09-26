@@ -31,6 +31,12 @@
   --code-green: #4ade80;
   --code-blue: #7dd3fc;
 
+  /* Pastille « encre » : bouton principal, filtre actif, déclencheur du menu.
+     Dans le thème sombre elle s'inverse pour garder le même rôle (contraste maximal sur la page). */
+  --ink-solid: var(--ink);
+  --ink-solid-hover: #1f2937;
+  --ink-solid-fg: #ffffff;
+
   --radius: 10px;
   --radius-sm: 6px;
   --shadow: 0 18px 40px rgb(15 23 42 / 8%);
@@ -45,6 +51,41 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Thème sombre : transformation fidèle du thème clair, à partir des mêmes jetons.
+   Les jetons du terminal (`--code-*`) ne changent pas : ces blocs sont déjà sombres par choix.
+   `--green` et `--green-bright` restent inchangés : l'identité verte est conservée et le contraste
+   du blanc sur le vert n'est pas dégradé. */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #101720;
+  --grid: #161e29;
+  --ink: #e8eef6;
+  --ink-soft: #c3cedb;
+  --muted: #9aa8b8;
+  --muted-soft: #8a99ab;
+  --eyebrow: #7fb0e0;
+  --line: #26303c;
+  --line-strong: #34414f;
+  --surface: #161d27;
+  --surface-alt: #1b232e;
+  --pill: #1e2833;
+  --pill-strong: #26323f;
+
+  --green-soft: #14301f;
+  --green-ink: #7fd8a1;
+  --blue: #7fb2ff;
+  --blue-soft: #14243d;
+  --amber: #f0b357;
+  --amber-soft: #3a2a12;
+
+  --ink-solid: #e8eef6;
+  --ink-solid-hover: #ffffff;
+  --ink-solid-fg: #0b1220;
+
+  --shadow: 0 18px 40px rgb(0 0 0 / 45%);
 }
 
 * {

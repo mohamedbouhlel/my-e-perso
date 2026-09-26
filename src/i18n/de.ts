@@ -23,7 +23,14 @@ const de: Translations = {
     groups: {
       window: 'Fenster',
       display: 'Anzeige',
+      appearance: 'Darstellung',
       share: 'Teilen',
+    },
+    /** Darstellung der Website (siehe `src/theme.ts`). */
+    theme: {
+      light: 'Hell',
+      dark: 'Dunkel',
+      system: 'System',
     },
     items: {
       fullscreen: 'Vollbild',

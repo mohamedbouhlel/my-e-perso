@@ -132,6 +132,11 @@
   background: rgb(255 255 255 / 55%);
 }
 
+/* En thème sombre, le voile clair du survol devient un voile sombre discret. */
+[data-theme='dark'] .tab:hover {
+  background: rgb(148 163 184 / 14%);
+}
+
 .tab[aria-current='true'] {
   background: var(--bg);
   border-color: var(--line-strong);
@@ -369,17 +374,17 @@
   justify-content: center;
   width: 3.25rem;
   height: 3.25rem;
-  background: var(--ink);
-  border: 1px solid var(--ink);
+  background: var(--ink-solid);
+  border: 1px solid var(--ink-solid);
   border-radius: 999px;
-  color: #fff;
+  color: var(--ink-solid-fg);
   font-size: 1.15rem;
   line-height: 1;
   cursor: pointer;
 }
 
 .window-menu__trigger:hover {
-  background: #1f2937;
+  background: var(--ink-solid-hover);
 }
 
 .window-menu__panel {
@@ -445,6 +450,23 @@
 
 .window-menu__item:hover:not(:disabled) {
   background: var(--surface-alt);
+}
+
+/* Choix d'apparence : puce à gauche du libellé, comme une liste de boutons radio. */
+.window-menu__item--choice {
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.window-menu__mark {
+  flex: none;
+  width: 0.95rem;
+  color: var(--muted-soft);
+  text-align: center;
+}
+
+.window-menu__item--choice[aria-checked='true'] .window-menu__mark {
+  color: var(--green);
 }
 
 .window-menu__item:disabled {

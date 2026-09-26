@@ -18,13 +18,13 @@
 }
 
 .btn--primary {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #fff;
+  background: var(--ink-solid);
+  border-color: var(--ink-solid);
+  color: var(--ink-solid-fg);
 }
 
 .btn--primary:hover {
-  background: #1f2937;
+  background: var(--ink-solid-hover);
 }
 
 .btn--outline {
@@ -139,9 +139,9 @@
 }
 
 .chip[aria-pressed='true'] {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #fff;
+  background: var(--ink-solid);
+  border-color: var(--ink-solid);
+  color: var(--ink-solid-fg);
 }
 
 /* --- Grilles --- */
